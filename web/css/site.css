@@ -86,3 +86,13 @@ a.desc:after {
 .form-group {
     margin-bottom: 1rem;
 }
+
+
+.has-error .help-block {
+    color: red !important;
+}
+
+.has-error .form-control {
+    border-color: red !important;
+    box-shadow: none; /* Remove the default shadow if present */
+}

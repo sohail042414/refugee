@@ -1,9 +1,6 @@
 <?php
-
-use yii\bootstrap4\Accordion;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var app\models\Spouse $model */
@@ -11,58 +8,40 @@ use yii\widgets\DetailView;
 /** @var app\models\Children[] $children */
 /** @var string $title */
 
-$this->params['breadcrumbs'][] = ['label' => 'Spouses', 'url' => ['index']];
 ?>
 
 <div class="spouse-form">
-
-    <?= Accordion::widget([
-        'items' => [
-            [
-                'label' => '<h4>Basic Information</h4>', 
-                'content' => DetailView::widget([
-                    'model' => $refugee,
-                    'attributes' => [
-                        'id',
-                        'name',
-                        'father_guardian',
-                        'birth_date',
-                        'cnic',
-                        'refugee_number',
-                        'phone_no',
-                        'education',
-                        'caste',
-                        'disability',
-                        'marital_status',
-                        'is_women_guardian',
-                        'passport_no',
-                        'temporary_address',
-                        'permanent_address',
-                        'iiojk_address',
-                    ],
-                ]),
-                'contentOptions' => ['class' => 'bg-light'],
-            ],
-        ],
-        'encodeLabels' => false, 
-    ]); ?>
 
     <h2 class="mt-4 mb-3"><?= Html::encode($title) ?></h2>
 
     <!-- Spouse form -->
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'wife_first_name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
 
-    <?= $form->field($model, 'wife_second_name')->textInput(['maxlength' => true]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-4">
+            <?= $form->field($model, 'cnic')->textInput(['maxlength' => true]) ?>
+        </div>
+        
+        <div class="col-4">
+            <?= $form->field($model, 'refugee_number')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'cnic')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'refugee_number')->hiddenInput()->label(false) ?>
-    
-    <?= $form->field($model, 'date_of_nikah')->textInput() ?>
+    <div class="row">
 
-    <?= $form->field($model, 'local_or_migrant')->textInput(['maxlength' => true]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'date_of_nikah')->textInput() ?>
+        </div>
+        <div class="col-4">
+            <?= $form->field($model, 'resident_type')->dropDownList(\app\helpers\AppHelper::getResidentTypes()) ?>
+        </div>
+
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -70,3 +49,5 @@ $this->params['breadcrumbs'][] = ['label' => 'Spouses', 'url' => ['index']];
 
     <?php ActiveForm::end(); ?>
 </div>
+
+

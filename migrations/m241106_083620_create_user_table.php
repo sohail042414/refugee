@@ -15,6 +15,7 @@ class m241106_083620_create_user_table extends Migration
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
             'user_type' => "ENUM('super', 'user') NOT NULL DEFAULT 'user'",
+            'status' => "ENUM('active', 'disabled') NOT NULL DEFAULT 'active'",
             'full_name' => $this->string(255)->notNull(),
             'username' => $this->string(50)->notNull()->unique(),
             'email' => $this->string(100)->notNull()->unique(),

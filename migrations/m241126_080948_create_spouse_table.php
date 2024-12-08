@@ -16,8 +16,7 @@ class m241126_080948_create_spouse_table extends Migration
             'id' => $this->primaryKey(),
             'refugee_id' => $this->integer(),
             'refugee_number' => $this->string(30)->notNull(),  
-            'first_name' => $this->string(40)->notNull(), //first_name
-            'second_name' => $this->string(40)->notNull(), //last_name
+            'full_name' => $this->string(60)->notNull(), 
             'cnic' => $this->string(20)->unique()->notNull(), 
             'refugee_number' => $this->string(30)->notNull(), 
             'date_of_nikah' => $this->date()->notNull(),

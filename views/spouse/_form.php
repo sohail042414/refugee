@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Spouses', 'url' => ['index']];
 
 <div class="spouse-form">
 
-    <?= Accordion::widget([
+    <? /*= Accordion::widget([
         'items' => [
             [
                 'label' => '<h4>Basic Information</h4>', 
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Spouses', 'url' => ['index']];
                     'model' => $refugee,
                     'attributes' => [
                         'id',
-                        'name',
+                        'full_name',
                         'father_guardian',
                         'birth_date',
                         'cnic',
@@ -45,16 +45,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Spouses', 'url' => ['index']];
             ],
         ],
         'encodeLabels' => false, 
-    ]); ?>
+    ]); */ ?>
 
     <h2 class="mt-4 mb-3"><?= Html::encode($title) ?></h2>
 
     <!-- Spouse form -->
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'wife_first_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'wife_second_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'cnic')->textInput(['maxlength' => true]) ?>
 

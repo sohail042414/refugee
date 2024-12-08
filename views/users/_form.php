@@ -12,19 +12,29 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_type')->dropDownList([ 'super' => 'Super', 'user' => 'User', ], ['prompt' => '']) ?>
+    <div class="row">
+        <div class="col-6">
+            <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-6">
+            <?= $form->field($model, 'user_type')->dropDownList(['user' => 'User', 'super' => 'Super', ]) ?>
+            <?= $form->field($model, 'status')->dropDownList([ 'active' => 'Active','disabled' => 'Disabled']) ?>
+            <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <div class="row">
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+        <div class="col-4">
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

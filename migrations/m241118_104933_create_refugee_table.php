@@ -15,7 +15,7 @@ class m241118_104933_create_refugee_table extends Migration
         $this->createTable('{{%refugee}}', [
             'id' => $this->primaryKey()->unsigned(),
             'camp_id' => $this->integer()->notNull(),
-            'sex' => "ENUM('male','female','other') NOT NULL DEFAULT 'male'", //in form show dropdown , Local , Migrant  
+            'gender' => "ENUM('male','female','other') NOT NULL DEFAULT 'male'", //in form show dropdown , Local , Migrant  
             'full_name' => $this->string(60)->notNull(),
             'refugee_number' => $this->string(30)->unique()->notNull(), // this is number assigned manually. 
             'father_name' => $this->string(60)->notNull(), 
@@ -33,7 +33,12 @@ class m241118_104933_create_refugee_table extends Migration
             'temporary_address' => $this->string(255),
             'permanent_address' => $this->string(255),
             'iiojk_address' => $this->string(255), 
+            'status' => $this->string(20)->defaultValue('draft'),
+            'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'), 
+            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         ]);
+
+
     }
 
     /**

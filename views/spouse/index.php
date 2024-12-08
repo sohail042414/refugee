@@ -1,28 +1,51 @@
 <?php
 
+use app\models\Spouse;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\Spouse $model */
-/** @var ActiveForm $form */
+/** @var app\models\SearchSpouse $searchModel */
+/** @var yii\data\ActiveDataProvider $dataProvider */
+
+$this->title = 'Spouses';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="spouse-index">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-        <?= $form->field($model, 'wife_first_name') ?>
-        <?= $form->field($model, 'wife_second_name') ?>
-        <?= $form->field($model, 'cnic') ?>
-        <?= $form->field($model, 'refugee_number') ?>
-        <?= $form->field($model, 'date_of_nikah') ?>
-        <?= $form->field($model, 'local_or_migrant') ?>
-        <?= $form->field($model, 'created_at') ?>
-        <?= $form->field($model, 'updated_at') ?>
-    
-        <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
+    <p>
+        <?= Html::a('Create Spouse', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-</div><!-- spouse-index -->
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'refugee_id',
+            'refugee_number',
+            'full_name',
+            'cnic',
+            //'date_of_nikah',
+            //'resident_type',
+            //'created_at',
+            //'updated_at',
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Spouse $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
+        ],
+    ]); ?>
+
+
+</div>

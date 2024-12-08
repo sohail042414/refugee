@@ -8,10 +8,11 @@ use Yii;
  * This is the model class for table "children".
  *
  * @property int $id
- * @property string $name
+ * @property string $full_name
  * @property string $date_of_birth
  * @property string $education
- * @property string|null $educational_institution_year
+ * @property string|null $institute
+ * @property string|null $passing_year
  * @property string|null $occupation
  * @property string|null $disability
  * @property string $refugee_number
@@ -36,11 +37,13 @@ class Children extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'date_of_birth', 'education', 'refugee_number'], 'required'],
+            [['full_name', 'date_of_birth', 'education'], 'required'],
+            [['passing_year'], 'string', 'max' => 4],
+            [['education'], 'string', 'max' => 40],
             [['date_of_birth', 'created_at', 'updated_at'], 'safe'],
-            [['name'], 'string', 'max' => 60],
-            [['education', 'occupation', 'disability'], 'string', 'max' => 100],
-            [['educational_institution_year'], 'string', 'max' => 150],
+            [['full_name'], 'string', 'max' => 60],
+            [['occupation', 'disability'], 'string', 'max' => 100],
+            [['institute'], 'string', 'max' => 60],
             [['refugee_number'], 'string', 'max' => 30],
             [['refugee_number'], 'exist', 'skipOnError' => true, 'targetClass' => Refugee::class, 'targetAttribute' => ['refugee_number' => 'refugee_number']],
         ];
@@ -53,10 +56,11 @@ class Children extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'full_name' => 'Full Name',
             'date_of_birth' => 'Date Of Birth',
             'education' => 'Education',
-            'educational_institution_year' => 'Educational Institution Year',
+            'institute' => 'Institute',
+            'passing_year' => 'Passing Year',
             'occupation' => 'Occupation',
             'disability' => 'Disability',
             'refugee_number' => 'Refugee Number',
@@ -70,8 +74,8 @@ class Children extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getRefugeeNumber()
+    public function getRefugee()
     {
-        return $this->hasOne(Refugee::class, ['refugee_number' => 'refugee_number']);
+        return $this->hasOne(Refugee::class, ['id' => 'refugee_id']);
     }
 }

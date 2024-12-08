@@ -34,15 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'username',
             'email:email',
             'phone',
-            'created_at',
-            'updated_at',
+            'status',
+            // 'created_at',
+            // 'updated_at',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  },
-                 'header' => 'Actions', // Optional: Header text for the column
-                 'contentOptions' => ['style' => 'width: 100px; white-space: nowrap;'],
+                'header' => 'Actions', // Optional: Header text for the column
+                'contentOptions' => ['style' => 'width: 100px; white-space: nowrap;'],
             ],
         ],
     ]); ?>

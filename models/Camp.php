@@ -49,7 +49,7 @@ class Camp extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[RefugeeNumber]].
+     * Gets query for [[refugee_id]].
      *
      * @return \yii\db\ActiveQuery
      */

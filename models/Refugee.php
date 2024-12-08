@@ -9,8 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property string $father_guardian
- * @property string $birth_date
+ * @property string $father_name
+ * @property string $date_of_birth
  * @property string $cnic
  * @property string $refugee_number
  * @property string $phone_no
@@ -18,7 +18,7 @@ use Yii;
  * @property string|null $caste
  * @property string|null $disability
  * @property string|null $marital_status
- * @property int|null $is_women_guardian
+ * @property string|null $gender
  * @property string|null $passport_no
  * @property string|null $temporary_address
  * @property string|null $permanent_address
@@ -42,10 +42,10 @@ class Refugee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'father_guardian', 'birth_date', 'cnic', 'refugee_number', 'phone_no'], 'required'],
-            [['birth_date'], 'safe'],
-            [['is_women_guardian'], 'in', 'range' => [0, 1, null], 'message' => 'Invalid value for women guardian status.'],
-            [['name', 'father_guardian'], 'string', 'max' => 60],
+            [['camp_id','full_name', 'father_name', 'date_of_birth', 'cnic', 'refugee_number', 'phone_no','marital_status'], 'required'],
+            [['date_of_birth'], 'safe'],
+            [['gender'], 'string'],
+            [['full_name', 'father_name'], 'string', 'max' => 60],
             [['cnic', 'marital_status', 'passport_no'], 'string', 'max' => 20],
             [['refugee_number'], 'string', 'max' => 30],
             [['phone_no'], 'string', 'max' => 15],
@@ -55,6 +55,7 @@ class Refugee extends \yii\db\ActiveRecord
             [['cnic'], 'unique'],
             [['refugee_number'], 'unique'],
             [['passport_no'], 'unique'],
+            [['is_divorced','is_widow','is_widower','camp_id'],'integer']
         ];
     }
 
@@ -65,8 +66,8 @@ class Refugee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'father_guardian' => 'Father Guardian',
+            'full_name' => 'Full Name',
+            'father_name' => 'Father Name',
             'date_of_birth' => 'Date of Birth',
             'cnic' => 'CNIC',
             'refugee_number' => 'Refugee Number',
@@ -75,12 +76,22 @@ class Refugee extends \yii\db\ActiveRecord
             'caste' => 'Caste',
             'disability' => 'Disability',
             'marital_status' => 'Marital Status',
-            'is_women_guardian' => 'Women Guardian Status', 
+            'gender' => 'Gender', 
             'passport_no' => 'Passport No',
             'temporary_address' => 'Temporary Address',
             'permanent_address' => 'Permanent Address',
             'iiojk_address' => 'Iiojk Address',
         ];
+    }
+
+    /**
+     * Gets query for [[refugee_id]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCamp()
+    {
+        return $this->hasOne(Camp::class, ['id' => 'camp_id']);
     }
 
     /**
@@ -90,7 +101,7 @@ class Refugee extends \yii\db\ActiveRecord
      */
         public function getChildren()
     {
-        return $this->hasMany(Children::class, ['refugee_number' => 'refugee_number']);
+        return $this->hasMany(Children::class, ['refugee_id' => 'id']);
     }
 
     /**
@@ -100,7 +111,7 @@ class Refugee extends \yii\db\ActiveRecord
      */
     public function getSpouses()
     {
-        return $this->hasMany(Children::class, ['refugee_number' => 'refugee_number']);
+        return $this->hasMany(Spouse::class, ['refugee_id' => 'id']);
     }
 
 

@@ -17,8 +17,8 @@ class SearchRefugee extends Refugee
     public function rules()
     {
         return [
-            [['id', 'is_women_guardian'], 'integer'],
-            [['name', 'father_guardian', 'birth_date', 'cnic', 'refugee_number', 'phone_no', 'education', 'caste', 'disability', 'marital_status', 'passport_no', 'temporary_address', 'permanent_address', 'iiojk_address'], 'safe'],
+            [['id'], 'integer'],
+            [['full_name', 'father_name', 'date_of_birth', 'cnic', 'refugee_number', 'phone_no', 'education', 'caste', 'disability', 'marital_status', 'passport_no', 'temporary_address', 'permanent_address', 'iiojk_address'], 'safe'],
         ];
     }
 
@@ -59,12 +59,12 @@ class SearchRefugee extends Refugee
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'birth_date' => $this->birth_date,
-            'is_women_guardian' => $this->is_women_guardian,
+            'date_of_birth' => $this->date_of_birth,
+            'gender' => $this->gender
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'father_guardian', $this->father_guardian])
+        $query->andFilterWhere(['like', 'full_name', $this->full_name])
+            ->andFilterWhere(['like', 'father_name', $this->father_name])
             ->andFilterWhere(['like', 'cnic', $this->cnic])
             ->andFilterWhere(['like', 'refugee_number', $this->refugee_number])
             ->andFilterWhere(['like', 'phone_no', $this->phone_no])

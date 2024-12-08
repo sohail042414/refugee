@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
+use app\models\Refugee;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -23,15 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'refugee_number',
-            'name',
-            'father_guardian',
-            'birth_date',
-            'cnic',
+            'full_name',
+            'father_name',
+            'date_of_birth',
+            'cnic',            
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Refugee $model) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 },
+                 'header' => 'Actions', // Optional: Header text for the column
+                 'contentOptions' => ['style' => 'width: 100px; white-space: nowrap;'],
+            ],
             
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

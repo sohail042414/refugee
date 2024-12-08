@@ -8,6 +8,10 @@ use yii\web\IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface
 {
+    //Field to get password from form. 
+    public $password; 
+
+
     public static function tableName()
     {
         return 'user';
@@ -16,8 +20,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['full_name', 'username', 'email', 'password'], 'required'],
-            [['user_type'], 'string'],
+            [['full_name', 'username', 'email', 'password_hash'], 'required'],
+            [['password'], 'required', 'on' => 'create'],
+            [['user_type','status'], 'string'],
+            [['password'], 'string', 'min' => 6],
             [['created_at', 'updated_at'], 'safe'],
             [['full_name', 'password'], 'string', 'max' => 255],
             [['username'], 'string', 'max' => 50],

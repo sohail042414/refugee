@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'district_id',
+            'name',
             [
                 'attribute' => 'district_id',
                 'header' => 'District',
@@ -37,7 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->district->name;
                  }
             ],
-            'name',
             'address',
             [
                 'class' => ActionColumn::className(),
