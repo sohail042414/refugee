@@ -14,21 +14,17 @@ class m241118_104933_create_refugee_table extends Migration
     {
         $this->createTable('{{%refugee}}', [
             'id' => $this->primaryKey()->unsigned(),
-            'camp_id' => $this->integer()->notNull(),
-            'sex' => "ENUM('male','female','other') NOT NULL DEFAULT 'male'", //in form show dropdown , Local , Migrant  
-            'full_name' => $this->string(60)->notNull(),
-            'refugee_number' => $this->string(30)->unique()->notNull(), // this is number assigned manually. 
-            'father_name' => $this->string(60)->notNull(), 
-            'phone_no' => $this->string(15)->notNull(),
+            'name' => $this->string(60)->notNull(),
+            'father_guardian' => $this->string(60)->notNull(), 
+            'birth_date' => $this->date()->notNull(),
             'cnic' => $this->string(20)->unique()->notNull(),
-            'date_of_birth' => $this->date()->notNull(),
-            'caste' => $this->string(50),
+            'refugee_number' => $this->string(30)->unique()->notNull(), 
+            'phone_no' => $this->string(15)->notNull(),
             'education' => $this->string(100),
+            'caste' => $this->string(50),
             'disability' => $this->string(100),
             'marital_status' => $this->string(20),
-            'is_divorced' => $this->boolean()->defaultValue(false),
-            'is_widower' => $this->boolean()->defaultValue(false),
-            'is_widow' => $this->boolean()->defaultValue(false),
+            'is_women_guardian' => $this->boolean()->null(),
             'passport_no' => $this->string(20)->unique(), 
             'temporary_address' => $this->string(255),
             'permanent_address' => $this->string(255),

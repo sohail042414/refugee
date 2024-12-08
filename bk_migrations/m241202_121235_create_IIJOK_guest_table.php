@@ -11,7 +11,7 @@ class m241202_121235_create_IIJOK_guest_table extends Migration
             'refugee_number' => $this->string(30)->unique()->notNull(),
             'details' => $this->text()->notNull(),
             'name' => $this->string(255)->notNull(),
-            'relation' => "ENUM('guest', 'relative', 'visit') NOT NULL DEFAULT 'guest'", 
+            'relation' => "ENUM('guest', 'relative', 'visit') NOT NULL", 
             'date_of_arrival' => $this->date()->notNull(),
             'date_of_return' => $this->date()->null(),
             'purpose_of_arrival' => $this->string(255)->notNull(),

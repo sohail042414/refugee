@@ -40,8 +40,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav me-auto'],
         'items' => [
             ['label' => 'Dashboard', 'url' => ['/site/index']],
-            [ 'label' => 'User List', 'url' => ['/site/index']],
-            [ 'label' => 'Camps', 'url' => ['/camp/index']],
+            [ 'label' => 'User List', 'url' => ['/users/index']],
+            [ 'label' => 'Camps', 'url' => ['/camps/index']],
             [ 'label' => 'Refugee List', 'url' => ['/refugee/index']],
             [ 'label' => 'Advance Search', 'url' => ['/advance-search/index']]        
         ],

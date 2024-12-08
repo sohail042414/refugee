@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\SearchUser;
 use Yii;
-use app\models\Users;
+use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -25,14 +26,17 @@ class UsersController extends Controller
 
     public function actionIndex()
     {
+        $searchModel = new SearchUser();
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Users::find(),
+            'query' => User::find(),
             'pagination' => [
                 'pageSize' => 10,
             ],
         ]);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -46,7 +50,7 @@ class UsersController extends Controller
 
     public function actionCreate()
     {
-        $model = new Users();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -79,7 +83,7 @@ class UsersController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Users::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

@@ -17,29 +17,31 @@ class m241129_115428_create_children_spouse_table extends Migration
 
         $this->createTable('{{%children_spouse}}', [
             'id' => $this->primaryKey(),
-            'refugee_number' => $this->string(50)->notNull(),
-            'name' => $this->string(255)->notNull(),
-            'husband_wife_name' => $this->string(255), //spouse_name
+            'refugee_id' => $this->integer(),                    
+            'refugee_number' => $this->string(30)->notNull(),
+            'full_name' => $this->string(100)->notNull(),
+            'spouse_name' => $this->string(100), //spouse_name
             'date_of_birth' => $this->date(), //
             'date_of_nikah' => $this->date(), //
             'education' => $this->string(255),
-            'institution_year' => $this->string(255), // add 2 fields , instituion , passing_year,  for passing_year, it should be 4 characters.  
+            'institute' => $this->string(255), // add 2 fields , instituion , passing_year,  for passing_year, it should be 4 characters.  
+            'passing_year' => $this->string(255),
             'occupation' => $this->string(255),
-            'local_or_migrant' => $this->string(50),
-            'kids_name_age' => $this->text(),
+            'resident_type' => "ENUM('local', 'migrant') NOT NULL", //in form show dropdown , Local , Migrant  
+            'children_details' => $this->text(), //children name and age. 
             'disability' => $this->string(255),
         ]);
 
         
-        $this->addForeignKey(
-            'fk-children_spouse-refugee_number', 
-            '{{%children_spouse}}',             
-            'refugee_number',            
-            '{{%refugee}}',                 
-            'refugee_number',               
-            'CASCADE',                          
-            'CASCADE'                         
-        );
+        // $this->addForeignKey(
+        //     'fk-children_spouse-refugee_number', 
+        //     '{{%children_spouse}}',             
+        //     'refugee_number',            
+        //     '{{%refugee}}',                 
+        //     'refugee_number',               
+        //     'CASCADE',                          
+        //     'CASCADE'                         
+        // );
     }
 
     /**
@@ -47,10 +49,10 @@ class m241129_115428_create_children_spouse_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey(
-            'fk-children_spouse-refugee_number',
-            '{{%children_spouse}}'
-        );
+        // $this->dropForeignKey(
+        //     'fk-children_spouse-refugee_number',
+        //     '{{%children_spouse}}'
+        // );
 
         $this->dropTable('{{%children_spouse}}');
     }

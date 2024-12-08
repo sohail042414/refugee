@@ -15,13 +15,13 @@ class m241126_080948_create_spouse_table extends Migration
         $this->createTable('{{%spouse}}', [
             'id' => $this->primaryKey(),
             'refugee_id' => $this->integer(),
-            'refugee_number' => $this->string(30)->notNull(),  
-            'first_name' => $this->string(40)->notNull(), //first_name
-            'second_name' => $this->string(40)->notNull(), //last_name
+            'wife_first_name' => $this->string(60)->notNull(), //first_name
+            'wife_second_name' => $this->string(60)->notNull(), //last_name
             'cnic' => $this->string(20)->unique()->notNull(), 
             'refugee_number' => $this->string(30)->notNull(), 
-            'date_of_nikah' => $this->date()->notNull(),
-            'resident_type' => "ENUM('local', 'migrant') NOT NULL", //in form show dropdown , Local , Migrant  
+            'date_of_nikah' => $this->date()->notNull(), 
+            'local_or_migrant' => $this->string(20)->notNull(), 
+            //'resident_type' => $this->string(20)->notNull(), in form show dropdown , Local , Migrant  
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'), 
             'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         ]);
