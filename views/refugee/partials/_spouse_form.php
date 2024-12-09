@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
         <div class="col-4">
             <?= $form->field($model, 'resident_type')->dropDownList(\app\helpers\AppHelper::getResidentTypes()) ?>
         </div>
-
+        
     </div>
 
     <div class="form-group">

@@ -1,6 +1,7 @@
 <?php 
 
 use yii\bootstrap4\Accordion;
+use yii\helpers\Html;
 
 
 $items = [];
@@ -22,6 +23,10 @@ $items[] = [
 // print_r($spouse->count());
 // exit;
 
+
+
+
+
 if($model->getSpouses()->count() > 0){
 
     $items[] =  [
@@ -33,17 +38,17 @@ if($model->getSpouses()->count() > 0){
     ];
 }
 
-if($model->getChildren()->count() > 0){
 
+if ($model->getChildren()->count() >= 0) {
     $items[] = [
-        'label' => '<h4>Children Information</h4>', 
-        'content' => $this->render('partials/_refugee_details', [
-            'model' => $model,
+        'label' => '<h4>Children Information</h4>',
+        'content' => $this->render('partials/_children_details', [
+            'model' => $model
         ]),
         'contentOptions' => ['class' => 'bg-light'],
     ];
-
 }
+
 
 echo Accordion::widget([
         'encodeLabels' => false, 

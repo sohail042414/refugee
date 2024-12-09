@@ -6,8 +6,10 @@
 
 <?php 
     $dataProvider = new ActiveDataProvider([
-        'query' => $model->getSpouses(),
+        'query' => $model->getChildren(),
     ]);
+
+
 ?>
 
 <div class="row">
@@ -18,15 +20,16 @@
 
 <div class="row">
     <div class="col-12">
+        
         <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'refugee_number',
+                    'refugee_id',
                     'full_name',
-                    'cnic',
-                    'date_of_nikah',
-                    'resident_type',
+                    'date_of_birth',
+                    'education',
+                    'passing_year',
                     'created_at',
                     'updated_at',
                 ],

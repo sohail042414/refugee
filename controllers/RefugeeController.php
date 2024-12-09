@@ -126,6 +126,8 @@ class RefugeeController extends Controller
         $model = new Children();
         
         $refugee = $this->findModel($refugee_id);
+
+        $model->refugee_id = $refugee_id; 
     
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
