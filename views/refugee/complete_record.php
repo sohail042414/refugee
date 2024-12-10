@@ -50,6 +50,19 @@ if ($model->getChildren()->count() >= 0) {
 }
 
 
+if ($model->getMarriedChildren()->count() >= 0) {
+    $items[] = [
+        'label' => '<h4>married Children Information</h4>',
+        'content' => $this->render('partials/_children_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+    ];
+}
+
+
+
+
 echo Accordion::widget([
         'encodeLabels' => false, 
         'items' => $items

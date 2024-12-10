@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                         <?= Html::submitButton('Next', [
                             'class' => 'btn btn-primary', 
                             'name' => 'next',
+                            'value'=> 'next',
                         ]) ?>
                     </div>
             <?php ActiveForm::end(); ?>
