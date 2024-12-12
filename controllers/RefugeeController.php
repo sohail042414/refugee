@@ -1,12 +1,14 @@
 <?php
 namespace app\controllers;
 
+
 use Yii;
 use yii\filters\AccessControl;
 use app\models\Refugee;
 use app\models\Spouse;
 use app\models\ChildrenSpouse;
 use app\models\Children;
+use app\models\FamilyMember;
 use app\models\SearchRefugee;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -21,7 +23,7 @@ class RefugeeController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','create-spouse','create-children','create-married-children'],
+                        'actions' => ['index','view','create','update','create-spouse','create-children','create-married-children','create-family-member'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -158,7 +160,7 @@ class RefugeeController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if (Yii::$app->request->post('next')) {
                 if ($model->save()) {
-                    return $this->redirect(['/', 'refugee_id' => $refugee_id]);
+                    return $this->redirect(['create-family-member', 'refugee_id' => $refugee_id]);
                 }
             } elseif ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Married children information saved successfully.');
@@ -172,6 +174,30 @@ class RefugeeController extends Controller
         ]);
     }
 
+
+    public function actionCreateFamilyMember($refugee_id)
+    {
+        $refugee = $this->findModel($refugee_id);
+        $model = new FamilyMember();
+    
+        $model->refugee_id = $refugee_id;
+    
+        if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->post('next')) {
+                if ($model->save()) {
+                    return $this->redirect(['/', 'refugee_id' => $refugee_id]);
+                }
+            } elseif ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Family Members information saved successfully.');
+                return $this->refresh();
+            }
+        }
+    
+        return $this->render('Family_member', [
+            'model' => $model,
+            'refugee' => $refugee,
+        ]);
+    }
 
     
 

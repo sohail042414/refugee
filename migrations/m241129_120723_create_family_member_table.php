@@ -18,9 +18,10 @@ class m241129_120723_create_family_member_table extends Migration
             'refugee_number' => $this->string(30)->notNull(), 
             'relation' => "ENUM('father', 'mother','brother','sister') NOT NULL", 
             'full_name' => $this->string(100)->notNull(),
-            'alive_deceased' => "ENUM('Alive', 'Deceased') NOT NULL", 
+            'living_status' => "ENUM('alive', 'dead') NOT NULL DEFAULT 'alive'", 
             'cnic' => $this->string(15), 
-            'current_address_or_burial' => $this->text(), 
+            'current_address' => $this->string(255)->defaultValue(NULL), 
+            'burial_address' => $this->string(255)->defaultValue(NULL),
             'occupation' => $this->string(255),
             'phone_number' => $this->string(15), 
         ]);

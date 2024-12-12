@@ -28,8 +28,8 @@ use yii\widgets\ActiveForm;
 
 
                 <div class="col-md-3">
-                    <?= $form->field($model, 'date_of_birth') ?>
-                    <?= $form->field($model, 'date_of_nikah') ?>
+                    <?= $form->field($model, 'date_of_birth')->textInput(['type' => 'date']) ?>
+                    <?= $form->field($model, 'date_of_nikah')->textInput(['type' => 'date']) ?>
                     <?= $form->field($model, 'children_details') ?>
                 </div>
 

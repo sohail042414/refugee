@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                         <div class="row">
                             <div class="col-md-4">
                                 <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'date_of_birth')->textInput() ?>
+                                <?= $form->field($model, 'date_of_birth')->textInput(['type' => 'date']) ?>
                                 <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
