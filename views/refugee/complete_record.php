@@ -10,7 +10,8 @@ $actionId = $actionId = Yii::$app->controller->action->id;
 $items = [];
 
 $items[] = [
-        'label' => '<h4>Basic Information </h4>', 
+        'label' => '<h6>Section 1: Basic Information </h6>', 
+        //'headerTemplate' => '<div class="row">{label}</div><div class="row">Something very interesting here..</div>', // Custom template
         'content' => $this->render('partials/_refugee_details', [
             'model' => $model,
         ]),
@@ -21,7 +22,7 @@ $items[] = [
 if($model->getSpouses()->count() > 0){
 
     $items[] =  [
-        'label' => '<h4>Spouse Information</h4>', 
+        'label' => '<h6>Section 2: Spouse Information</h6>', 
         'content' => $this->render('partials/_spouse_details', [
             'model' => $model,
         ]),
@@ -34,7 +35,7 @@ if($model->getSpouses()->count() > 0){
 if ($model->getChildren()->count() > 0) {
 
     $items[] = [
-        'label' => '<h4>Children Information</h4>',
+        'label' => '<h6>Section 3: Children Information</h6>',
         'content' => $this->render('partials/_children_details',[
             'model' => $model
         ]),
@@ -46,7 +47,7 @@ if ($model->getChildren()->count() > 0) {
 
 if ($model->getChildrenMarried()->count() > 0) {
     $items[] = [
-        'label' => '<h4>married Children Information</h4>',
+        'label' => '<h6>Section 3(b): Married Children Information</h6>',
         'content' => $this->render('partials/_married_children_details', [
             'model' => $model
         ]),
@@ -58,7 +59,7 @@ if ($model->getChildrenMarried()->count() > 0) {
 
 if ($model->getFamilyMember()->count() > 0) {
     $items[] = [
-        'label' => '<h4>Family Members Information</h4>',
+        'label' => '<h6> Section 4: Family Members Information</h6>',
         'content' => $this->render('partials/_family_member_details', [
             'model' => $model
         ]),
