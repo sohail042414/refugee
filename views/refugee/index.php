@@ -25,12 +25,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn'],            
             'refugee_number',
             'full_name',
             'father_name',
             'date_of_birth',
-            'cnic',            
+            'cnic',   
+            [
+                'attribute' => 'camp_id',
+                'header' => 'Camp',
+                // 'filter' => true,
+                // 'filterOptions' =>  [
+                //     'active' => 'Active',
+                //     'inactive' => 'Inactive',
+                //     'pending' => 'Pending',
+                // ],
+                'value' => function ($model){
+                    return   $model->camp->name;
+                }
+            ],
+            'phone_no',         
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Refugee $model) {

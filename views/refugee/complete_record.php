@@ -14,13 +14,7 @@ $items[] = [
     ];
 
 
-//$spouse = $model->getSpouses();
 
-// echo '<br>FILE : '.__FILE__;
-// echo '<br>LINE : '.__LINE__;
-// echo '<pre>';
-// print_r($spouse->count());
-// exit;
 
 if($model->getSpouses()->count() > 0){
 
