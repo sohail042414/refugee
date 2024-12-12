@@ -6,7 +6,7 @@
 
 <?php 
     $dataProvider = new ActiveDataProvider([
-        'query' => $model->getChildren(),
+        'query' => $model->getMarriedChildren(),
     ]);
 
 
@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-12">
-        <p>Below is the list of children of refugee <?php echo $model->full_name; ?> </p> 
+        <p>Below is the list of married children of refugee <?php echo $model->full_name; ?> </p> 
     </div>
 </div>
 
@@ -25,10 +25,10 @@
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'refugee_id',
+                    'refugee_number',
                     'full_name',
                     'date_of_birth',
-                    'education',
+                    'date_of_nikah',
                     'passing_year',
                     'created_at',
                     'updated_at',
@@ -40,6 +40,6 @@
 
 <div class="row">
     <div class="col-12">
-        <?= Html::a('Add More', ['/refugee/create-children','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add More', ['/refugee/create-married-children','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </div>
 </div>

@@ -35,12 +35,12 @@ use yii\widgets\ActiveForm;
     <div class="row">
 
         <div class="col-4">
-            <?= $form->field($model, 'date_of_nikah')->textInput() ?>
+            <?= $form->field($model, 'date_of_nikah')->textInput(['type' => 'date']) ?>
         </div>
         <div class="col-4">
             <?= $form->field($model, 'resident_type')->dropDownList(\app\helpers\AppHelper::getResidentTypes()) ?>
         </div>
-
+        
     </div>
 
     <div class="form-group">
