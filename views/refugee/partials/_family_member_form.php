@@ -24,20 +24,20 @@ use yii\widgets\ActiveForm;
     <div class="row">
 
     <div class="col-md-4">
-        <?= $form->field($model, 'full_name') ?>
-        <?= $form->field($model, 'refugee_number') ?>
+        <?= $form->field($model, 'full_name')->textInput(['maxlength'=>true]) ?>
+        <?= $form->field($model, 'refugee_number')->textInput(['maxlength'=>true]) ?>
         
     </div>
 
 
     <div class="col-md-4">
-    <?= $form->field($model, 'relation') ?>
-    <?= $form->field($model, 'living_status') ?>
+    <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getRelationsList()) ?>
+    <?= $form->field($model, 'living_status')->dropDownList(app\helpers\AppHelper::getLivingStatusList()) ?>
     </div>
 
     <div class="col-md-4">
 
-        <?= $form->field($model, 'cnic') ?>
+        <?= $form->field($model, 'cnic')->textInput(['maxlength' =>true]) ?>
         <?= $form->field($model, 'phone_number') ?>
     </div>
 </div>
@@ -55,11 +55,11 @@ use yii\widgets\ActiveForm;
     </div>
     </div>
         <div class="form-group">
-                <?= Html::submitButton('Save', [
+                <?= Html::submitButton('Save and Continue', [
                     'class' => 'btn btn-success',
                     'name' => 'save',
                 ]) ?>
-                <?= Html::submitButton('Next', [
+                <?= Html::submitButton('Save and Next', [
                     'class' => 'btn btn-primary',
                     'name' => 'next',
                     'value' => 'next',

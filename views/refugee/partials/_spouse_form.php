@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -44,7 +45,8 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save and Continue', ['name'=> 'save','class' => 'btn btn-success']) ?> 
+        <?= Html::submitButton('Save and Next', ['name'=> 'next','class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

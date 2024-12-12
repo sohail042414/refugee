@@ -6,9 +6,8 @@
 
 <?php 
     $dataProvider = new ActiveDataProvider([
-        'query' => $model->getMarriedChildren(),
+        'query' => $model->getChildrenMarried(),
     ]);
-
 
 ?>
 

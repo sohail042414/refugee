@@ -114,13 +114,14 @@ class Refugee extends \yii\db\ActiveRecord
         return $this->hasMany(Spouse::class, ['refugee_id' => 'id']);
     }
 
-    public function getMarriedChildren()
+    public function getChildrenMarried()
     {
-        return $this->hasMany(ChildrenSpouse::class, ['refugee_id' => 'id']);
+        return $this->hasMany(ChildrenMarried::class, ['refugee_id' => 'id']);
     }
 
     public function getFamilyMember()
     {
         return $this->hasMany(FamilyMember::class, ['refugee_id' => 'id']);
     }
+    
 }

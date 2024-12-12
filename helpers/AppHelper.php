@@ -30,4 +30,20 @@ class AppHelper
             'female' => 'Female'
         ];
     }
+
+    public static function getRelationsList(){
+        return [
+            'brother' => 'Brother',
+            'sister' => 'Sister',
+            'mother' => 'Mother',
+            'father' => 'Father'
+        ];
+    }
+
+    public static function getLivingStatusList(){
+        return [
+            'alive' => 'Alive',
+            'dead' => 'Dead',
+        ];
+    }
 }

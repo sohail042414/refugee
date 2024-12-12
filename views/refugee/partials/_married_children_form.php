@@ -1,5 +1,6 @@
 <?php
 
+use app\helpers\AppHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -23,7 +24,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-3">
                     <?= $form->field($model, 'refugee_number') ?>
                     <?= $form->field($model, 'full_name') ?>
-                    <?= $form->field($model, 'resident_type') ?>
+                    <?= $form->field($model, 'resident_type')->dropDownList(AppHelper::getResidentTypes()) ?>
                 </div>
 
 
@@ -47,11 +48,11 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
             <div class="form-group">
-                <?= Html::submitButton('Save', [
+                <?= Html::submitButton('Save and Continue', [
                     'class' => 'btn btn-success',
                     'name' => 'save',
                 ]) ?>
-                <?= Html::submitButton('Next', [
+                <?= Html::submitButton('Save and Next', [
                     'class' => 'btn btn-primary',
                     'name' => 'next',
                     'value' => 'next',

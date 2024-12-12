@@ -41,5 +41,6 @@
 <div class="row">
     <div class="col-12">
         <?= Html::a('Add More', ['/refugee/create-children','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Next, Add Married Children', ['/refugee/create-married-children','refugee_id' => $model->id], ['class' => 'btn btn-primary float-right']) ?>
     </div>
 </div>

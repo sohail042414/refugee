@@ -56,7 +56,7 @@ class FamilyMember extends \yii\db\ActiveRecord
             'relation' => 'Relation',
             'full_name' => 'Full Name',
             'living_status' => 'Living Status',
-            'cnic' => 'Cnic',
+            'cnic' => 'CNIC',
             'current_address' => 'Current Address',
             'burial_address' => 'Burrial Address',
             'occupation' => 'Occupation',

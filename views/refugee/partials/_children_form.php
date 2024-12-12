@@ -43,11 +43,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                         </div>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Save', [
+                        <?= Html::submitButton('Save and Continue', [
                             'class' => 'btn btn-success', 
                             'name' => 'save',
                         ]) ?>
-                        <?= Html::submitButton('Next', [
+                        <?= Html::submitButton('Save and Next', [
                             'class' => 'btn btn-primary', 
                             'name' => 'next',
                             'value'=> 'next',
