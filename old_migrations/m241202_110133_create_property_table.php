@@ -9,6 +9,7 @@ class m241202_110133_create_property_table extends Migration
         $this->createTable('{{%property}}', [
             'id' => $this->primaryKey(),
             'refugee_number' => $this->string(30)->unique()->notNull(),
+            'refugee_id' => $this->integer()->notNull(),
             'detail' => $this->text()->notNull(),
             'personal_private' => $this->string(255)->notNull(),
             'wife' => $this->string(255)->null(),
@@ -21,20 +22,20 @@ class m241202_110133_create_property_table extends Migration
             'miscellaneous' => $this->string(255)->null(),
         ]);
 
-        $this->addForeignKey(
-            'fk-property-refugee_number',
-            '{{%property}}',
-            'refugee_number',
-            '{{%refugee}}',
-            'refugee_number',
-            'CASCADE',
-            'CASCADE'
-        );
+        // $this->addForeignKey(
+        //     'fk-property-refugee_number',
+        //     '{{%property}}',
+        //     'refugee_number',
+        //     '{{%refugee}}',
+        //     'refugee_number',
+        //     'CASCADE',
+        //     'CASCADE'
+        // );
     }
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk-property-refugee_number', '{{%property}}');
+        // $this->dropForeignKey('fk-property-refugee_number', '{{%property}}');
         $this->dropTable('{{%property}}');
     }
 }

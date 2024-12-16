@@ -15,6 +15,7 @@ class m241129_122838_create_scholarship_table extends Migration
         $this->createTable('{{%scholarship}}', [
             'id' => $this->primaryKey(),
             'refugee_number' => $this->string(50)->notNull(), 
+            'refugee_id' => $this->integer()->notNull(),
             'details' => $this->text()->notNull(), 
             'head_of_family' => $this->string(255)->notNull(),
             'children_name' => $this->string(255)->notNull(), 
@@ -26,15 +27,15 @@ class m241129_122838_create_scholarship_table extends Migration
         ]);
 
 
-        $this->addForeignKey(
-            'fk-scholarship-refugee_number', 
-            '{{%scholarship}}',             
-            'refugee_number',               
-            '{{%refugee}}',                 
-            'refugee_number',               
-            'CASCADE',                      
-            'CASCADE'                       
-        );
+        // $this->addForeignKey(
+        //     'fk-scholarship-refugee_number', 
+        //     '{{%scholarship}}',             
+        //     'refugee_number',               
+        //     '{{%refugee}}',                 
+        //     'refugee_number',               
+        //     'CASCADE',                      
+        //     'CASCADE'                       
+        // );
     }
 
     /**
@@ -42,10 +43,10 @@ class m241129_122838_create_scholarship_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey(
-            'fk-scholarship-refugee_number',
-            '{{%scholarship}}'
-        );
+        // $this->dropForeignKey(
+        //     'fk-scholarship-refugee_number',
+        //     '{{%scholarship}}'
+        // );
 
         $this->dropTable('{{%scholarship}}');
     }

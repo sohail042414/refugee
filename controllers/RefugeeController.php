@@ -13,6 +13,7 @@ use app\models\SearchRefugee;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Inlaw;
 
 class RefugeeController extends Controller
 {
@@ -23,7 +24,7 @@ class RefugeeController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','create-spouse','create-children','create-married-children','create-family-member'],
+                        'actions' => ['index', 'view', 'create', 'update', 'create-spouse', 'create-children', 'create-married-children', 'create-family-member', 'create-in-law'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -42,7 +43,6 @@ class RefugeeController extends Controller
     {
         $searchModel = new SearchRefugee();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -55,9 +55,7 @@ class RefugeeController extends Controller
      */
     public function actionView($id)
     {
-
         $model = $this->findModel($id);
-
         return $this->render('view', [
             'model' => $model,
         ]);
@@ -67,18 +65,13 @@ class RefugeeController extends Controller
     public function actionCreate()
     {
         $model = new Refugee();
-
         if ($model->load(Yii::$app->request->post())) {
-
             $model->status = 'create-spouse';
-            
-            if($model->save()){
+            if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Refugee basic information created, next step, enter spouse information.');
-
                 return $this->redirect(['create-spouse', 'refugee_id' => $model->id]);
             }
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -87,11 +80,9 @@ class RefugeeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -100,7 +91,6 @@ class RefugeeController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
@@ -109,96 +99,73 @@ class RefugeeController extends Controller
     {
 
         $refugee = $this->findModel($refugee_id);
-
         $model = new Spouse();
-        
-        $model->refugee_id = $refugee_id;         
-    
-        $post = Yii::$app->request->post(); 
-        
+        $model->refugee_id = $refugee_id;
+        $post = Yii::$app->request->post();
         if ($model->load($post) && $model->save()) {
-
             Yii::$app->session->setFlash('success', 'Spouse Information created successfully.');
-
-            if(isset($post['next'])){
-
+            if (isset($post['next'])) {
                 $refugee->status = 'create-children';
                 $refugee->update(false);
-
                 return $this->redirect(['create-children', 'refugee_id' => $refugee->id]);
-            }else{
+            } else {
                 return $this->refresh();
             }
         }
-   
         return $this->render('create_spouse', [
             'model' => $model,
             'refugee' => $refugee
         ]);
-
     }
 
 
     public function actionCreateChildren($refugee_id)
     {
         $model = new Children();
-
         $refugee = $this->findModel($refugee_id);
-    
         $model->refugee_id = $refugee_id;
-    
         $post = Yii::$app->request->post();
-
         if ($model->load($post)) {
-
             if ($model->save()) {
-
                 Yii::$app->session->setFlash('success', 'Child information saved successfully.');
-                
-                if (isset($post['next'])) { 
-
+                if (isset($post['next'])) {
                     $refugee->status = 'married-children';
                     $refugee->update(FALSE);
-
                     return $this->redirect(['create-married-children', 'refugee_id' => $refugee_id]);
-                }else{
+                } else {
                     return $this->refresh();
                 }
             }
         }
-    
+
         return $this->render('create_children', [
             'model' => $model,
             'refugee' => $refugee,
         ]);
     }
-    
-    
+
+
     public function actionCreateMarriedChildren($refugee_id)
     {
         $refugee = $this->findModel($refugee_id);
         $model = new ChildrenMarried();
-    
+
         $model->refugee_id = $refugee_id;
 
         $post = Yii::$app->request->post();
-    
+
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Married children information saved successfully.');
-                if(isset($post['next'])){
-                    
+                if (isset($post['next'])) {
                     $refugee->status = 'family-members';
                     $refugee->update();
-
                     return $this->redirect(['create-family-member', 'refugee_id' => $refugee_id]);
-                }else{
+                } else {
                     return $this->refresh();
                 }
             }
-               
         }
-    
         return $this->render('married_children', [
             'model' => $model,
             'refugee' => $refugee,
@@ -210,32 +177,51 @@ class RefugeeController extends Controller
     {
         $refugee = $this->findModel($refugee_id);
         $model = new FamilyMember();
-    
         $model->refugee_id = $refugee_id;
-
         $post = Yii::$app->request->post();
-    
         if ($model->load($post)) {
             if ($model->save()) {
-
-                Yii::$app->session->setFlash('success', 'Family Members information saved successfully.');
-                
-                if (Yii::$app->request->post('next')) {                    
-                    //return $this->redirect(['/in-laws', 'refugee_id' => $refugee_id]);
+                Yii::$app->session->setFlash('success', 'family members information saved successfully.');
+                if (isset($post['next'])) {
+                    $refugee->status = 'in-law';
+                    $refugee->update();
+                    return $this->redirect(['create-in-law', 'refugee_id' => $refugee_id]);
+                } else {
                     return $this->refresh();
-                }else{
-                    return $this->refresh();
-                }            
+                }
             }
         }
-    
         return $this->render('family_members', [
             'model' => $model,
             'refugee' => $refugee,
         ]);
     }
 
-    
+
+
+
+    public function actionCreateInLaw($refugee_id)
+    {
+        $refugee = $this->findModel($refugee_id);
+        $model = new Inlaw();
+        $model->refugee_id = $refugee_id;
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'In law information saved successfully.');
+                if (Yii::$app->request->post('next')) {
+                    // return $this->redirect(['/in-laws', 'refugee_id' => $refugee_id]);
+                    return $this->refresh();
+                } else {
+                    return $this->refresh();
+                }
+            }
+        }
+        return $this->render('in-law', [
+            'model' => $model,
+            'refugee' => $refugee,
+        ]);
+    }
 
 
 

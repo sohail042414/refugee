@@ -18,7 +18,6 @@ class m241126_080948_create_spouse_table extends Migration
             'refugee_number' => $this->string(30)->notNull(),  
             'full_name' => $this->string(60)->notNull(), 
             'cnic' => $this->string(20)->unique()->notNull(), 
-            'refugee_number' => $this->string(30)->notNull(), 
             'date_of_nikah' => $this->date()->notNull(),
             'resident_type' => "ENUM('local', 'migrant') NOT NULL", //in form show dropdown , Local , Migrant  
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'), 

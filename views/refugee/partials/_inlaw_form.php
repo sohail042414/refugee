@@ -12,49 +12,39 @@ use yii\widgets\ActiveForm;
 <div class="card">
 
     <div class="card-header">
-        <h2>Add Family members Data</h2>
+        <h2>Add in law Data</h2>
     </div>
 
     <div class="card-body">
-<div class="refugee-family_member">
+<div class="refugee-inlaw">
 
 <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
 
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-
-    <div class="col-md-4">
-        <?= $form->field($model, 'full_name')->textInput(['maxlength'=>true]) ?>
-        <?= $form->field($model, 'refugee_number')->textInput(['maxlength'=>true]) ?>
-        
-    </div>
-
-
-    <div class="col-md-4">
-    <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getRelationsList()) ?>
-    <?= $form->field($model, 'living_status')->dropDownList(app\helpers\AppHelper::getLivingStatusList()) ?>
-    </div>
-
-    <div class="col-md-4">
-
-        <?= $form->field($model, 'cnic')->textInput(['maxlength' =>true]) ?>
+        <div class="col-md-4">
+        <?= $form->field($model, 'refugee_number') ?>
+        <?= $form->field($model, 'refugee_id') ?>
+        <?= $form->field($model, 'relation') ?>
+        </div>
+        <div class="col-md-4">
+        <?= $form->field($model, 'name') ?>
+        <?= $form->field($model, 'living_status') ?>
+        <?= $form->field($model, 'occupation') ?>
+        </div>
+        <div class="col-md-4">
+        <?= $form->field($model, 'cnic') ?>
         <?= $form->field($model, 'phone_number') ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-8">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+        <?= $form->field($model, 'current_address') ?>
+        </div>
+        <div class="col-md-6">
         <?= $form->field($model, 'burial_address') ?>
-        
-    </div>
-
-
-    <div class="col-md-8">
-    <?= $form->field($model, 'current_address') ?>
-    </div>
-
-    </div>
-    
+        </div>
+        </div>
         <div class="form-group">
                 <?= Html::submitButton('Save and Continue', [
                     'class' => 'btn btn-success',
@@ -66,9 +56,9 @@ use yii\widgets\ActiveForm;
                     'value' => 'next',
                 ]) ?>
             </div>
-    <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
 
 
-        </div>
-    </div>
+</div>
+</div>
 </div>

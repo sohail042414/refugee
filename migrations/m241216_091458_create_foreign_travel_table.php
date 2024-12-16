@@ -2,13 +2,17 @@
 
 use yii\db\Migration;
 
-class m241202_120348_create_foreign_travel_table extends Migration
+/**
+ * Handles the creation of table `{{%foreign_travel}}`.
+ */
+class m241216_091458_create_foreign_travel_table extends Migration
 {
     public function safeUp()
     {
         $this->createTable('{{%foreign_travel}}', [
             'id' => $this->primaryKey(),
             'refugee_number' => $this->string(30)->unique()->notNull(),
+            'refugee_id' => $this->integer()->notNull(),
             'details' => $this->text()->notNull(),
             'personal_private' => $this->string(255)->notNull(),
             'wife' => $this->string(255)->null(),
@@ -22,20 +26,20 @@ class m241202_120348_create_foreign_travel_table extends Migration
             'income' => $this->decimal(10, 2)->null(),
         ]);
 
-        $this->addForeignKey(
-            'fk-foreign_travel-refugee_number',
-            '{{%foreign_travel}}',
-            'refugee_number',
-            '{{%refugee}}',
-            'refugee_number',
-            'CASCADE',
-            'CASCADE'
-        );
+        // $this->addForeignKey(
+        //     'fk-foreign_travel-refugee_number',
+        //     '{{%foreign_travel}}',
+        //     'refugee_number',
+        //     '{{%refugee}}',
+        //     'refugee_number',
+        //     'CASCADE',
+        //     'CASCADE'
+        // );
     }
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk-foreign_travel-refugee_number', '{{%foreign_travel}}');
+        // $this->dropForeignKey('fk-foreign_travel-refugee_number', '{{%foreign_travel}}');
         $this->dropTable('{{%foreign_travel}}');
     }
 }

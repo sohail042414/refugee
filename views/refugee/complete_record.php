@@ -68,6 +68,17 @@ if ($model->getFamilyMember()->count() > 0) {
     ];
 }
 
+if ($model->getInlaw()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 4: Inlaw Information</h6>',
+        'content' => $this->render('partials/_inlaw_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'in-law') ? true:false,        
+    ];
+}
+
 
 
 echo Accordion::widget([

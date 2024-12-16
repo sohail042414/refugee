@@ -124,4 +124,8 @@ class Refugee extends \yii\db\ActiveRecord
         return $this->hasMany(FamilyMember::class, ['refugee_id' => 'id']);
     }
     
+    public function getInlaw()
+    {
+        return $this->hasMany(Inlaw::class, ['refugee_id' => 'id']);
+    }
 }
