@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'occupation') ?>
         </div>
         <div class="col-md-4">
-        <?= $form->field($model, 'cnic') ?>
+        <?= $form->field($model, 'cnic')->textInput(['maxlength'=>true]) ?>
         <?= $form->field($model, 'phone_number') ?>
         </div>
         <div class="row">
