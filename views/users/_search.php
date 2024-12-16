@@ -4,23 +4,18 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\SearchUser $model */
+/** @var app\models\SearchUsers $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="user-search">
+<div class="users-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'user_type') ?>
 
     <?= $form->field($model, 'full_name') ?>
 
@@ -28,13 +23,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email') ?>
 
-    <?php // echo $form->field($model, 'phone') ?>
+    <?= $form->field($model, 'phone') ?>
 
-    <?php // echo $form->field($model, 'auth_key') ?>
+    <?php // echo $form->field($model, 'password') ?>
 
-    <?php // echo $form->field($model, 'password_hash') ?>
-
-    <?php // echo $form->field($model, 'password_reset_token') ?>
+    <?php // echo $form->field($model, 'user_type') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 
