@@ -46,4 +46,6 @@ class AppHelper
             'dead' => 'Dead',
         ];
     }
+
+    
 }

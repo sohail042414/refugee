@@ -7,7 +7,7 @@
 
 <?php 
     $dataProvider = new ActiveDataProvider([
-        'query' => $model-> getInlaw(),
+        'query' => $model->  getChildrenKashmirEducation(),
     ]);
 
     // $dataProvider = new ActiveDataProvider([
@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="col-12">
-        <p>Below is the details of Inlaw  of refugee <?php echo $model->full_name; ?> </p> 
+        <p>Below is the details of children kashmir education  of refugee <?php echo $model->full_name; ?> </p> 
     </div>
 </div>
 
@@ -31,12 +31,11 @@
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'refugee_number',
                     'refugee_id',
-                    'name',
-                    'phone_number',
-                    'relation',
-                    'living_status',
+                    'full_name',
+                    'year',
+                    'job',
+                    'college',
                     
                 ],
             ]); 
@@ -46,6 +45,6 @@
 
 <div class="row">
     <div class="col-12">
-        <?= Html::a('Add More', ['/refugee/create-in-law','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add More', ['/refugee/create-children-kashmir-education','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </div>
 </div>

@@ -128,4 +128,15 @@ class Refugee extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Inlaw::class, ['refugee_id' => 'id']);
     }
+
+    public function getScholarship()
+    {
+        return $this->hasMany(Scholarship::class, ['refugee_id' => 'id']);
+    }
+
+    public function getChildrenKashmirEducation()
+    {
+        return $this->hasMany(ChildrenKashmirEducation::class, ['refugee_id' => 'id']);
+    }
+
 }

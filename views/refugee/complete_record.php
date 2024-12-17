@@ -70,7 +70,7 @@ if ($model->getFamilyMember()->count() > 0) {
 
 if ($model->getInlaw()->count() > 0) {
     $items[] = [
-        'label' => '<h6> Section 4: Inlaw Information</h6>',
+        'label' => '<h6> Section 5: Inlaw Information</h6>',
         'content' => $this->render('partials/_inlaw_details', [
             'model' => $model
         ]),
@@ -79,6 +79,27 @@ if ($model->getInlaw()->count() > 0) {
     ];
 }
 
+if ($model->getScholarship()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 6: Scholarship Information</h6>',
+        'content' => $this->render('partials/_scholarship_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'Scholarship') ? true:false,        
+    ];
+}
+
+if ($model->getChildrenKashmirEducation()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 7: Children kashmir education Information</h6>',
+        'content' => $this->render('partials/_children_kashmir_education_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'children-kashmir-education') ? true:false,        
+    ];
+}
 
 
 echo Accordion::widget([
