@@ -101,6 +101,18 @@ if ($model->getChildrenKashmirEducation()->count() > 0) {
     ];
 }
 
+if ($model->getJob()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 8: Job Information</h6>',
+        'content' => $this->render('partials/_job_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'job') ? true:false,        
+    ];
+}
+
+
 
 echo Accordion::widget([
         'encodeLabels' => false, 

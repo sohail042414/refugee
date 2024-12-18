@@ -3,6 +3,7 @@ namespace app\controllers;
 
 
 use app\models\ChildrenKashmirEducation;
+use app\models\Job;
 use app\models\Scholarship;
 use Yii;
 use yii\filters\AccessControl;
@@ -28,7 +29,7 @@ class RefugeeController extends Controller
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'create-spouse', 'create-children',
                         'create-married-children', 'create-family-member', 'create-in-law', 'create-scholarship',
-                        'create-children-kashmir-education',],
+                        'create-children-kashmir-education','create-job'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -265,6 +266,35 @@ class RefugeeController extends Controller
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Children kashmir education information saved successfully.');
                 if (Yii::$app->request->post('next')) {
+                    return $this->redirect(['create-job', 'refugee_id' => $refugee_id]);
+                } else {
+                    return $this->refresh();
+                }
+            }
+        }
+        return $this->render('children_kashmir_education', [
+            'model' => $model,
+            'refugee' => $refugee,
+        ]);
+    }
+
+    
+
+
+
+
+
+
+    public function actionCreateJob($refugee_id)
+    {
+        $refugee = $this->findModel($refugee_id);
+        $model = new Job();
+        $model->refugee_id = $refugee_id;
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Job information saved successfully.');
+                if (Yii::$app->request->post('next')) {
                     // return $this->redirect(['/in-laws', 'refugee_id' => $refugee_id]);
                     return $this->refresh();
                 } else {
@@ -272,7 +302,7 @@ class RefugeeController extends Controller
                 }
             }
         }
-        return $this->render('children_kashmir_education', [
+        return $this->render('create-job', [
             'model' => $model,
             'refugee' => $refugee,
         ]);

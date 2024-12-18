@@ -21,14 +21,21 @@ use yii\widgets\ActiveForm;
 <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
 
     <?php $form = ActiveForm::begin(); ?>
-
-        <?= $form->field($model, 'refugee_id') ?>
-        <?= $form->field($model, 'full_name') ?>
-        <?= $form->field($model, 'year') ?>
-        <?= $form->field($model, 'current_information') ?>
-        <?= $form->field($model, 'job') ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'refugee_id') ?>
+            <?= $form->field($model, 'full_name') ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'current_information') ?>
+            <?= $form->field($model, 'job') ?>
+            
+        </div>
+        <div class="col-md-4">
         <?= $form->field($model, 'college') ?>
-    
+        <?= $form->field($model, 'year') ?>
+        </div>
+    </div>
         <div class="form-group">
                 <?= Html::submitButton('Save and Continue', [
                     'class' => 'btn btn-success',

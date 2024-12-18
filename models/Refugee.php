@@ -139,4 +139,9 @@ class Refugee extends \yii\db\ActiveRecord
         return $this->hasMany(ChildrenKashmirEducation::class, ['refugee_id' => 'id']);
     }
 
+    public function getJob()
+    {
+        return $this->hasMany(Job::class, ['refugee_id' => 'id']);
+    }
+
 }
