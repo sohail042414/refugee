@@ -113,6 +113,29 @@ if ($model->getJob()->count() > 0) {
 }
 
 
+if ($model->getBusiness()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 9: Business Information</h6>',
+        'content' => $this->render('partials/_business_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'business') ? true:false,        
+    ];
+}
+
+
+if ($model->getEconomy()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 10: Economy Information</h6>',
+        'content' => $this->render('partials/_economy_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'economy') ? true:false,        
+    ];
+}
+
 
 echo Accordion::widget([
         'encodeLabels' => false, 

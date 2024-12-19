@@ -2,7 +2,9 @@
 namespace app\controllers;
 
 
+use app\models\Business;
 use app\models\ChildrenKashmirEducation;
+use app\models\Economy;
 use app\models\Job;
 use app\models\Scholarship;
 use Yii;
@@ -29,7 +31,8 @@ class RefugeeController extends Controller
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'create-spouse', 'create-children',
                         'create-married-children', 'create-family-member', 'create-in-law', 'create-scholarship',
-                        'create-children-kashmir-education','create-job'],
+                        'create-children-kashmir-education','create-job', 'create-business',
+                        'create-economy'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -295,8 +298,7 @@ class RefugeeController extends Controller
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Job information saved successfully.');
                 if (Yii::$app->request->post('next')) {
-                    // return $this->redirect(['/in-laws', 'refugee_id' => $refugee_id]);
-                    return $this->refresh();
+                    return $this->redirect(['create-business', 'refugee_id' => $refugee_id]);
                 } else {
                     return $this->refresh();
                 }
@@ -308,6 +310,57 @@ class RefugeeController extends Controller
         ]);
     }
 
+
+
+    
+    public function actionCreateBusiness($refugee_id)
+    {
+        $refugee = $this->findModel($refugee_id);
+        $model = new Business();
+        $model->refugee_id = $refugee_id;
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Business information saved successfully.');
+                if (Yii::$app->request->post('next')) {
+                    return $this->redirect(['create-economy', 'refugee_id' => $refugee_id]);
+                } else {
+                    return $this->refresh();
+                }
+            }
+        }
+        return $this->render('create-business', [
+            'model' => $model,
+            'refugee' => $refugee,
+        ]);
+    }
+
+
+
+
+
+    public function actionCreateEconomy($refugee_id)
+    {
+        $refugee = $this->findModel($refugee_id);
+        $model = new Economy();
+        $model->refugee_id = $refugee_id;
+        $post = Yii::$app->request->post();
+        if ($model->load($post)) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'information saved successfully.');
+                if (Yii::$app->request->post('next')) {
+                    // return $this->redirect(['/in-laws', 'refugee_id' => $refugee_id]);
+                    return $this->refresh();
+                } else {
+                    return $this->refresh();
+                }
+            }
+        }
+        return $this->render('create-economy', [
+            'model' => $model,
+            'refugee' => $refugee,
+        ]);
+    }
 
 
 

@@ -144,4 +144,15 @@ class Refugee extends \yii\db\ActiveRecord
         return $this->hasMany(Job::class, ['refugee_id' => 'id']);
     }
 
+    public function getBusiness()
+    {
+        return $this->hasMany(Business::class, ['refugee_id' => 'id']);
+    }
+
+    public function getEconomy()
+    {
+        return $this->hasMany(Economy::class, ['refugee_id' => 'id']);
+    }
+
+
 }
