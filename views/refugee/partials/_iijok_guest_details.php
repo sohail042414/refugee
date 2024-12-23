@@ -2,18 +2,25 @@
     use yii\grid\GridView;
     use yii\helpers\Html;
     use yii\data\ActiveDataProvider;
+    use yii\db\Query;
 ?>
 
 <?php 
     $dataProvider = new ActiveDataProvider([
-        'query' => $model->getChildrenMarried(),
+        'query' => $model->getIijokGuest(),
     ]);
+
+    // $dataProvider = new ActiveDataProvider([
+    //     'query' => (new Query())
+    //         ->select('*')
+    //         ->from('family_member'),
+    // ]);
 
 ?>
 
 <div class="row">
     <div class="col-12">
-        <p>Below is the list of married children of refugee <?php echo $model->full_name; ?> </p> 
+        <p>Below is the list of IIJOK Guest of refugee <?php echo $model->full_name; ?> </p> 
     </div>
 </div>
 
@@ -24,11 +31,11 @@
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'refugee_number',
+                    'refugee_id',
+                    'type',
                     'full_name',
-                    'date_of_birth',
-                    'date_of_nikah',
-                    'passing_year',
+                    'relation',
+                    'date_of_arrival',
                 ],
             ]); 
         ?>
@@ -37,6 +44,6 @@
 
 <div class="row">
     <div class="col-12">
-        <?= Html::a('Add More', ['/refugee/create-married-children','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add More', ['/refugee/create-iijok-guest','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </div>
 </div>

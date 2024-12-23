@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
 
 <div class="card">
     <div class="card-header">
-        <h2>Add Business Data</h2>
+        <h2>Add Bank Account Data</h2>
     </div>
     <div class="card-body">
 
-        <div class="business-form">
+        <div class="Bank-account-form">
 
             <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
 
@@ -27,22 +27,21 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
             <?php $form = ActiveForm::begin(); ?>
 
             <div class="row">
-                <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_id') ?>
-                    <?= $form->field($model, 'business_details') ?>
-                    <?= $form->field($model, 'relation') ?>
-                </div>
 
                 <div class="col-md-4">
-                    <?= $form->field($model, 'from_date')->textInput(['type' => 'date']) ?>
-                    <?= $form->field($model, 'monthly_income') ?>
-                    <?= $form->field($model, 'clinic') ?>
+                    <?= $form->field($model, 'refugee_number') ?>
+                    <?= $form->field($model, 'refugee_id') ?>
+                    <?= $form->field($model, 'details') ?>
                 </div>
-                
                 <div class="col-md-4">
-                    <?= $form->field($model, 'labor') ?>
-                    <?= $form->field($model, 'shop') ?>
-                    <?= $form->field($model, 'other_details') ?>
+                    <?= $form->field($model, 'head_of_family') ?>
+                    <?= $form->field($model, 'full_name') ?>
+                    <?= $form->field($model, 'account_number') ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'account_name') ?>
+                    <?= $form->field($model, 'wife') ?>
+                    <?= $form->field($model, 'children') ?>
                 </div>
             </div>
 

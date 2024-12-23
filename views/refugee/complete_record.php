@@ -136,6 +136,76 @@ if ($model->getEconomy()->count() > 0) {
     ];
 }
 
+if ($model->getRentalHouse()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 11: Rental House Information</h6>',
+        'content' => $this->render('partials/_rental_house_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'rental-house') ? true:false,        
+    ];
+}
+
+if ($model->getProperty()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 12: Property Information</h6>',
+        'content' => $this->render('partials/_property_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'property') ? true:false,        
+    ];
+}
+
+if ($model->getBankAccount()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 13: Bank Account Information</h6>',
+        'content' => $this->render('partials/_bank_account_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'bank-account') ? true:false,        
+    ];
+}
+
+
+if ($model->getForeignTravel()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 14: Foreign Travel Information</h6>',
+        'content' => $this->render('partials/_foreign_travel_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'foreign-travel') ? true:false,        
+    ];
+}
+
+
+if ($model->getIijokGuest()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 15:IIJOK Guest Information</h6>',
+        'content' => $this->render('partials/_iijok_guest_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'iijok-guest') ? true:false,        
+    ];
+}
+
+
+if ($model->getPoliceCase()->count() > 0) {
+    $items[] = [
+        'label' => '<h6> Section 16:Police Case Information</h6>',
+        'content' => $this->render('partials/_police_case_details', [
+            'model' => $model
+        ]),
+        'contentOptions' => ['class' => 'bg-light'],
+        'expand' => ($model->status == 'police-case') ? true:false,        
+    ];
+}
+
+
 
 echo Accordion::widget([
         'encodeLabels' => false, 

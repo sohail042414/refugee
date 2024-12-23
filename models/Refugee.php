@@ -154,5 +154,37 @@ class Refugee extends \yii\db\ActiveRecord
         return $this->hasMany(Economy::class, ['refugee_id' => 'id']);
     }
 
+    public function getRentalHouse()
+    {
+        return $this->hasMany(RentalHouse::class, ['refugee_id' => 'id']);
+    }
+
+
+    public function getProperty()
+    {
+        return $this->hasMany(Property::class, ['refugee_id' => 'id']);
+    }
+
+    public function getBankAccount()
+    {
+        return $this->hasMany(BankAccount::class, ['refugee_id' => 'id']);
+    }
+
+    public function getForeignTravel()
+    {
+        return $this->hasMany(ForeignTravel::class, ['refugee_id' => 'id']);
+    }
+
+    public function getIijokGuest()
+    {
+        return $this->hasMany(IijokGuest::class, ['refugee_id' => 'id']);
+    }
+
+
+    public function getPoliceCase()
+    {
+        return $this->hasMany(PoliceCase::class, ['refugee_id' => 'id']);
+    }
+
 
 }

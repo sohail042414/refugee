@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 <div class="card">
 
     <div class="card-header">
-        <h2>Add Economy Data</h2>
+        <h2>Add Foreign Travel Data</h2>
     </div>
 
     <div class="card-body">
-        <div class="refugee-economy">
+        <div class="refugee-foreign-travel">
 
             <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
 
@@ -25,19 +25,25 @@ use yii\widgets\ActiveForm;
             <div class="row">
                 <div class="col-md-4">
                 <?= $form->field($model, 'refugee_id') ?>
-                <?= $form->field($model, 'monthly_income') ?>
-                <?= $form->field($model, 'requested_financial_assistance') ?>
-                </div>
-                <div class="col-md-4">
                 <?= $form->field($model, 'refugee_number') ?>
-                <?= $form->field($model, 'subsistence_allowance') ?>
-                
+                <?= $form->field($model, 'details') ?>
+                <?= $form->field($model, 'personal_private') ?>
                 </div>
                 <div class="col-md-4">
-                <?= $form->field($model, 'da') ?>
-                <?= $form->field($model, 'total_monthly_income') ?>
+                <?= $form->field($model, 'passport_number') ?>
+                <?= $form->field($model, 'country_name') ?>
+                <?= $form->field($model, 'purpose_of_travel') ?>
+                <?= $form->field($model, 'date_of_return')->textInput(['type' => 'date'])?>
                 </div>
-
+                <div class="col-md-4">
+                <?= $form->field($model, 'children') ?>
+                <?= $form->field($model, 'income') ?>
+                <?= $form->field($model, 'wife') ?>
+                <?= $form->field($model, 'date_of_departure')->textInput(['type' => 'date'])?>
+                </div>
+                <div class="col-md-4">
+                <?= $form->field($model, 'occupation_abroad') ?>
+                </div>  
             </div>
 
             <div class="form-group">

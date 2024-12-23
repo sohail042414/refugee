@@ -5,41 +5,37 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\FamilyMember $model */
 /** @var ActiveForm $form */
 ?>
-
 <div class="card">
 
     <div class="card-header">
-        <h2>Add Economy Data</h2>
+        <h2>Add Police Case  Data</h2>
     </div>
 
     <div class="card-body">
-        <div class="refugee-economy">
+        <div class="refugee-Police-case">
 
             <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
 
             <?php $form = ActiveForm::begin(); ?>
-
             <div class="row">
-                <div class="col-md-4">
-                <?= $form->field($model, 'refugee_id') ?>
-                <?= $form->field($model, 'monthly_income') ?>
-                <?= $form->field($model, 'requested_financial_assistance') ?>
-                </div>
-                <div class="col-md-4">
-                <?= $form->field($model, 'refugee_number') ?>
-                <?= $form->field($model, 'subsistence_allowance') ?>
-                
-                </div>
-                <div class="col-md-4">
-                <?= $form->field($model, 'da') ?>
-                <?= $form->field($model, 'total_monthly_income') ?>
-                </div>
 
-            </div>
-
+            <div class="col-md-4">
+        <?= $form->field($model, 'refugee_number') ?>
+        <?= $form->field($model, 'refugee_id') ?>
+        <?= $form->field($model, 'details') ?>
+        </div>
+        <div class="col-md-4">
+        <?= $form->field($model, 'FIR') ?>
+        <?= $form->field($model, 'crime') ?>
+        <?= $form->field($model, 'date_of_arrest')->textInput(['type' => 'date']) ?>
+        </div>
+        <div class="col-md-4">
+        <?= $form->field($model, 'bail') ?>
+        <?= $form->field($model, 'date_of_release')->textInput(['type' => 'date']) ?>
+        </div>
+        </div>
             <div class="form-group">
                 <?= Html::submitButton('Save and Continue', [
                     'class' => 'btn btn-success',
@@ -52,7 +48,6 @@ use yii\widgets\ActiveForm;
                 ]) ?>
             </div>
             <?php ActiveForm::end(); ?>
-
 
         </div>
     </div>
