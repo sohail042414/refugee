@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use app\models\Refugee;
+use app\models\SearchRefugee;
 use yii\web\Controller;
 use yii\web\Response;
 use app\models\AdvanceSearch;
@@ -20,7 +22,7 @@ class AdvanceSearchController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index','view'],
+                        'actions' => ['index', 'view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -34,15 +36,15 @@ class AdvanceSearchController extends Controller
      *
      * @return string
      */
-    
+
     public function actionIndex()
-    { 
+    {
+        $searchModel = new SearchRefugee();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $model = new AdvanceSearch();
-
-        return $this->render('index',[
-            'model' => $model
-        ]); 
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
-
 }

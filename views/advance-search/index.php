@@ -4,7 +4,10 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\grid\GridView;
 use yii\widgets\ActiveForm;
+use yii\grid\ActionColumn;
+use app\models\Refugee;
 
 /** @var yii\web\View $this */
 /** @var app\models\Refugee $model */
@@ -25,75 +28,69 @@ $this->title = 'Dashboard : Refugee Record Management System';
 
                     <div class="refugee-form">
 
-                        <?php $form = ActiveForm::begin(); ?>
+                        <?php $form = ActiveForm::begin([
+                            'action' => ['index'],
+                            'method' => 'get',
+                        ]); ?>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'full_name')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'father_guardian')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'father_name')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'birth_date')->textInput(['type' => 'date']) ?>
+                                <?= $form->field($searchModel, 'passport_no')->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'cnic')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'cnic')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'refugee_number')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'refugee_number')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'phone_no')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'caste')->textInput(['maxlength' => true]) ?>  
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'disability')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'phone_no')->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'marital_status')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'education')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'passport_no')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'caste')->textInput(['maxlength' => true]) ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'is_women_guardian')->radioList([
-                                    0 => 'Divorced', 
-                                    1 => 'Widow', 
-                                    null => 'Other (Not Applicable)'
-                                ]) ?>
+                                <?= $form->field($searchModel, 'disability')->textInput(['maxlength' => true]) ?>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <?= $form->field($searchModel, 'marital_status')->textInput(['maxlength' => true]) ?>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?= $form->field($searchModel, 'temporary_address')->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <?= $form->field($model, 'temporary_address')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'permanent_address')->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <?= $form->field($model, 'permanent_address')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= $form->field($model, 'iiojk_address')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($searchModel, 'iiojk_address')->textInput(['maxlength' => true]) ?>
                             </div>
                         </div>
 
@@ -108,5 +105,31 @@ $this->title = 'Dashboard : Refugee Record Management System';
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'full_name',
+            'father_name',
+            'cnic',
+            'refugee_number',
+            'phone_no',
+            'education',
+            'caste',
+            'disability',
+            'marital_status',
+            'passport_no',
+            
+            
+            ['class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Refugee $model) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 },
+                 'header' => 'Actions', // Optional: Header text for the column
+                 'contentOptions' => ['style' => 'width: 100px; white-space: nowrap;'],
+            ],
+        ],
+    ]); ?>
 </div>
