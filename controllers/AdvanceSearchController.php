@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\AdvanceSearch;
 use Yii;
 use yii\filters\AccessControl;
 use app\models\Refugee;
 use app\models\SearchRefugee;
 use yii\web\Controller;
 use yii\web\Response;
-use app\models\AdvanceSearch;
 
 class AdvanceSearchController extends Controller
 {
@@ -36,10 +36,9 @@ class AdvanceSearchController extends Controller
      *
      * @return string
      */
-
     public function actionIndex()
     {
-        $searchModel = new SearchRefugee();
+        $searchModel = new AdvanceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,4 +46,21 @@ class AdvanceSearchController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+        return $this->render('/refugee/view', [
+            'model' => $model,
+        ]);
+    }
+
+    protected function findModel($id)
+{
+    if (($model = Refugee::findOne($id)) !== null) {
+        return $model;
+    }
+
+    throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
+}
 }
