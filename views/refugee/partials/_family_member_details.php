@@ -42,9 +42,11 @@
         ?>
     </div>
 </div>
-
+<?php if($show_actions){ ?>
 <div class="row">
     <div class="col-12">
         <?= Html::a('Add More', ['/refugee/create-family-member','refugee_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </div>
 </div>
+<?php } ?> 
+

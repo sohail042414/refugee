@@ -4,11 +4,10 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\bootstrap4\Tabs;
 use yii\widgets\ActiveForm;
-
-/** @var yii\web\View $this */
-/** @var app\models\Refugee $model */
-/** @var yii\widgets\ActiveForm $form */
+use yii\grid\ActionColumn;
 
 $this->title = 'Dashboard : Refugee Record Management System';
 ?>
@@ -19,94 +18,102 @@ $this->title = 'Dashboard : Refugee Record Management System';
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2>Advance Search</h2>
+                    <h2>Advanced Search</h2>
                 </div>
                 <div class="card-body">
 
-                    <div class="refugee-form">
-
-                        <?php $form = ActiveForm::begin(); ?>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'father_guardian')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'birth_date')->textInput(['type' => 'date']) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'cnic')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'refugee_number')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'phone_no')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'caste')->textInput(['maxlength' => true]) ?>  
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'disability')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'marital_status')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'passport_no')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'is_women_guardian')->radioList([
-                                    0 => 'Divorced', 
-                                    1 => 'Widow', 
-                                    null => 'Other (Not Applicable)'
-                                ]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= $form->field($model, 'temporary_address')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= $form->field($model, 'permanent_address')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= $form->field($model, 'iiojk_address')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <?= Html::submitButton('Search ', ['class' => 'btn btn-success']) ?>
-                        </div>
-
-                        <?php ActiveForm::end(); ?>
-
-                    </div>
+                <?= Tabs::widget([
+    'items' => [
+        [
+            'label' => 'Search by Refugee Details',
+            'content' => $this->render('_form_personal', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]),
+            'active' => true,
+        ],
+        [
+            'label' => 'Search by Children\'s Details',
+            'content' => $this->render('_form_children', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]),
+        ],
+        [
+            'label' => 'Search by Family Member Details',
+            'content' => $this->render('_form_family', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]),
+        ],
+    ],
+]); ?>
 
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+
+    <div class="table-responsive">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'full_name',
+                'father_name',
+                'cnic',
+                'refugee_number',
+                'phone_no',
+                'education',
+                'caste',
+                'disability',
+                'marital_status',
+                'passport_no',
+                [
+                    'label' => 'Police Cases',
+                    'value' => function ($model) {
+                        if (!empty($model->policeCase)) {
+                            return implode('<br>', array_map(function ($case) {
+                                return "FIR: {$case->FIR}, Crime: {$case->crime}, Details: {$case->details}";
+                            }, $model->policeCase));
+                        }
+                        return 'No Police Cases';
+                    },
+                    'format' => 'raw',
+                ],
+                [
+                    'label' => 'Foreign Travel',
+                    'value' => function ($model) {
+                        if (!empty($model->foreignTravel)) {
+                            return implode('<br>', array_map(function ($travel) {
+                                return "Details: {$travel->details}, Country: {$travel->country_name}, Purpose: {$travel->purpose_of_travel}";
+                            }, $model->foreignTravel));
+                        }
+                        return 'No Foreign Travels';
+                    },
+                    'format' => 'raw',
+                ],
+                [
+                    'label' => 'Guests from IIJOK',
+                    'value' => function ($model) {
+                        if (!empty($model->iijokGuest)) {
+                            return implode('<br>', array_map(function ($guest) {
+                                return "Name: {$guest->full_name}, Relation: {$guest->relation}, Details: {$guest->details}";
+                            }, $model->iijokGuest));
+                        }
+                        return 'No Guests from IIJOK';
+                    },
+                    'format' => 'raw',
+                ],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'urlCreator' => function ($action, $model) {
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    },
+                    'header' => 'Actions',
+                    'contentOptions' => ['style' => 'width: 100px; white-space: nowrap;'],
+                ],
+            ],
+        ]); ?>
+    </div>
 </div>

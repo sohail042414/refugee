@@ -25,8 +25,8 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-4">
         <?= $form->field($model, 'refugee_number') ?>
-        <?= $form->field($model, 'refugee_id') ?>
         <?= $form->field($model, 'relation') ?>
+        <?= $form->field($model, 'current_address') ?>
         </div>
         <div class="col-md-4">
         <?= $form->field($model, 'name') ?>
@@ -34,15 +34,14 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'occupation') ?>
         </div>
         <div class="col-md-4">
-        <?= $form->field($model, 'cnic')->textInput(['maxlength'=>true]) ?>
         <?= $form->field($model, 'phone_number') ?>
+        <?= $form->field($model, 'cnic')->textInput(['maxlength'=>true]) ?>
+        
         </div>
         <div class="row">
-            <div class="col-md-6">
-        <?= $form->field($model, 'current_address') ?>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
         <?= $form->field($model, 'burial_address') ?>
+        </div>
         </div>
         </div>
         <div class="form-group">
@@ -56,9 +55,9 @@ use yii\widgets\ActiveForm;
                     'value' => 'next',
                 ]) ?>
             </div>
-            <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
-
-</div>
-</div>
+            
+        </div>
+    </div>
 </div>
