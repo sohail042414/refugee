@@ -61,4 +61,9 @@ class PoliceCase extends \yii\db\ActiveRecord
             'date_of_release' => 'Date Of Release',
         ];
     }
+
+    public function getRefugee()
+    {
+        return $this->hasOne(Refugee::class, ['id' => 'refugee_id']);
+    }
 }

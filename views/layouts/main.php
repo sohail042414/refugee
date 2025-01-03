@@ -43,6 +43,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             [ 'label' => 'User List', 'url' => ['/users/index']],
             [ 'label' => 'Camps', 'url' => ['/camps/index']],
             [ 'label' => 'Refugee List', 'url' => ['/refugee/index']],
+            [ 'label' => 'Polic Cases', 'url' => ['/police-case/index']],
+            [ 'label' => 'Foreign Travel', 'url' => ['/foreign-travel/index']],
+            [ 'label' => 'Guests', 'url' => ['/guest/index']],
             [ 'label' => 'Advance Search', 'url' => ['/advance-search/index']]        
         ],
     ]);
