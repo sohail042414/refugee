@@ -12,7 +12,7 @@ class m241216_091538_create_IIJOK_guest_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%IIJOK_guest}}', [
+        $this->createTable('{{%iiojk_guest}}', [
             'id' => $this->primaryKey(),
             'refugee_number' => $this->string(30)->unique()->notNull(),
             'refugee_id' => $this->integer()->notNull(),
@@ -44,6 +44,6 @@ class m241216_091538_create_IIJOK_guest_table extends Migration
     public function safeDown()
     {
         // $this->dropForeignKey('fk-IIJOK_guest-refugee_number', '{{%IIJOK_guest}}');
-        $this->dropTable('{{%IIJOK_guest}}');
+        $this->dropTable('{{%iiojk_guest}}');
     }
 }
