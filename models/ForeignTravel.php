@@ -73,4 +73,9 @@ class ForeignTravel extends \yii\db\ActiveRecord
             'income' => 'Income',
         ];
     }
+
+    public function getRefugee()
+{
+    return $this->hasOne(Refugee::class, ['id' => 'refugee_id']);
+}
 }

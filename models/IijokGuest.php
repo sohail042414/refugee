@@ -66,4 +66,9 @@ class IijokGuest extends \yii\db\ActiveRecord
             'purpose_of_departure' => 'Purpose Of Departure',
         ];
     }
+    
+    public function getRefugee()
+    {
+        return $this->hasOne(Refugee::class, ['id' => 'refugee_id']);
+    }
 }
