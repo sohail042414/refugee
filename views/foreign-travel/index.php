@@ -35,7 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'passport_number',
             'country_name',
             'details',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}', 
+            ],
         ],
     ]); ?>
 

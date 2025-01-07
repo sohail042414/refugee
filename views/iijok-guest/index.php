@@ -35,7 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_of_arrival',
             'purpose_of_arrival',
             'relation',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}', 
+            ],
         ],
     ]); ?>
 

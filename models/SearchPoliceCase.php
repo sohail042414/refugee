@@ -25,7 +25,7 @@ class SearchPoliceCase extends Model
 
     public function search($params)
     {
-        $query = PoliceCase::find()->joinWith('refugee');
+        $query = PoliceCase::find()->joinWith('refugee'); // Join with refugee table
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -44,13 +44,20 @@ class SearchPoliceCase extends Model
 
         $this->load($params);
 
+        // Validate input
         if (!$this->validate()) {
-            $query->where('0=1');
+            $query->where('0=1'); // Return no results if validation fails
             return $dataProvider;
         }
 
+        // Handle `refugee_number` safely
+        if (!empty($this->refugee_number)) {
+            $query->andFilterWhere(['like', 'refugee.refugee_number', $this->refugee_number]);
+        }
+
+        // Apply filters
         $query->andFilterWhere(['id' => $this->id])
-            ->andFilterWhere(['like', 'refugee_number', $this->refugee_number])
+            ->andFilterWhere(['refugee_id' => $this->refugee_id])
             ->andFilterWhere(['like', 'FIR', $this->FIR])
             ->andFilterWhere(['like', 'crime', $this->crime])
             ->andFilterWhere(['like', 'details', $this->details])
