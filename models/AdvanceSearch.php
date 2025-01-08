@@ -27,14 +27,27 @@ class AdvanceSearch extends Model
     public $police_case;
     public $travelled_iijok;
     public $guest_from_iijok;
-
+    public $relation;
+    public $living_status;
+    public $phone_number;
+    public $current_address;
+    public $burial_address; 
+    public $occupation; 
+    public $date_of_birth;
+    public $institute;
+    public $passing_year;
     /**
      * @return array the validation rules.
      */
     public function rules()
     {
         return [
-            [['refugee_number', 'full_name', 'father_name', 'cnic', 'phone_no', 'education', 'caste', 'disability', 'marital_status', 'passport_no', 'temporary_address', 'permanent_address', 'iiojk_address'], 'safe'],
+            [['refugee_number', 'full_name', 'father_name', 'cnic',
+            'phone_no', 'education', 'caste', 'disability', 'marital_status',
+            'passport_no', 'temporary_address', 'permanent_address',
+            'iiojk_address', 'relation', 'living_status', 'phone_number',
+            'current_address', 'burial_address', 'occupation', 'date_of_birth', 'institute',
+            'passing_year',], 'safe'],
             [['police_case', 'travelled_iijok', 'guest_from_iijok'], 'boolean'],
         ];
     }
@@ -74,7 +87,16 @@ class AdvanceSearch extends Model
             ->andFilterWhere(['like', 'passport_no', $this->passport_no])
             ->andFilterWhere(['like', 'temporary_address', $this->temporary_address])
             ->andFilterWhere(['like', 'permanent_address', $this->permanent_address])
-            ->andFilterWhere(['like', 'iiojk_address', $this->iiojk_address]);
+            ->andFilterWhere(['like', 'iiojk_address', $this->iiojk_address])
+            ->andFilterWhere(['like', 'relation', $this->relation])
+            ->andFilterWhere(['like', 'living_status', $this->living_status])
+            ->andFilterWhere(['like', 'phone_number', $this->phone_number])
+            ->andFilterWhere(['like', 'current_address', $this->current_address])
+            ->andFilterWhere(['like', 'burial_address', $this->burial_address])
+            ->andFilterWhere(['like', 'occupation', $this->occupation])
+            ->andFilterWhere(['like', 'date_of_birth', $this->date_of_birth])
+            ->andFilterWhere(['like', 'institute', $this->institute])
+            ->andFilterWhere(['like', 'passing_year', $this->passing_year]);
     
         $conditions = ['or']; 
     
