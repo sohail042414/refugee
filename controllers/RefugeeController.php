@@ -110,14 +110,21 @@ class RefugeeController extends Controller
         return $this->redirect(['index']);
     }
 
-
     public function actionCreateSpouse($refugee_id)
     {
 
+    
         $refugee = $this->findModel($refugee_id);
         $model = new Spouse();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-children';
+            $refugee->update(false);
+            return $this->redirect(['create-children', 'refugee_id' => $refugee->id]);
+        }
+
         if ($model->load($post) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Spouse Information created successfully.');
             if (isset($post['next'])) {
@@ -130,10 +137,9 @@ class RefugeeController extends Controller
         }
         return $this->render('create_spouse', [
             'model' => $model,
-            'refugee' => $refugee
+            'refugee' => $refugee,
         ]);
     }
-
 
     public function actionCreateChildren($refugee_id)
     {
@@ -141,6 +147,14 @@ class RefugeeController extends Controller
         $refugee = $this->findModel($refugee_id);
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-married-children';
+            $refugee->update(false);
+            return $this->redirect(['create-married-children', 'refugee_id' => $refugee->id]);
+        }
+
+
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Child information saved successfully.');
@@ -170,6 +184,18 @@ class RefugeeController extends Controller
 
         $post = Yii::$app->request->post();
 
+
+
+                        
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-family-member';
+            $refugee->update(false);
+            return $this->redirect(['create-family-member', 'refugee_id' => $refugee->id]);
+        }
+
+
+
+
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Married children information saved successfully.');
@@ -195,6 +221,12 @@ class RefugeeController extends Controller
         $model = new FamilyMember();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-in-law';
+            $refugee->update(false);
+            return $this->redirect(['create-in-law', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'family members information saved successfully.');
@@ -222,6 +254,12 @@ class RefugeeController extends Controller
         $model = new Inlaw();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-scholarship';
+            $refugee->update(false);
+            return $this->redirect(['create-scholarship', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'In law information saved successfully.');
@@ -246,6 +284,12 @@ class RefugeeController extends Controller
         $model = new Scholarship();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-children-kashmir-education';
+            $refugee->update(false);
+            return $this->redirect(['create-children-kashmir-education', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Scholarship information saved successfully.');
@@ -273,6 +317,11 @@ class RefugeeController extends Controller
         $model = new ChildrenKashmirEducation();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-job';
+            $refugee->update(false);
+            return $this->redirect(['create-job', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Children kashmir education information saved successfully.');
@@ -302,6 +351,11 @@ class RefugeeController extends Controller
         $model = new Job();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-business';
+            $refugee->update(false);
+            return $this->redirect(['create-business', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Job information saved successfully.');
@@ -327,6 +381,11 @@ class RefugeeController extends Controller
         $model = new Business();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-economy';
+            $refugee->update(false);
+            return $this->redirect(['create-economy', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Business information saved successfully.');
@@ -353,6 +412,11 @@ class RefugeeController extends Controller
         $model = new Economy();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-rental-house';
+            $refugee->update(false);
+            return $this->redirect(['create-rental-house', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Economy information saved successfully.');

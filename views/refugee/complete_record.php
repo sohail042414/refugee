@@ -36,7 +36,7 @@ if($model->getSpouses()->count() > 0){
 if ($model->getChildren()->count() > 0) {
 
     $items[] = [
-        'label' => '<h6>Section 3: Children Information</h6>',
+        'label' => '<h6>Section 3(a): Children Information</h6>',
         'content' => $this->render('partials/_children_details',[
             'model' => $model,
             'show_actions' => false,

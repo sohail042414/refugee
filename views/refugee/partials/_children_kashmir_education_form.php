@@ -16,27 +16,27 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="card-body">
-<div class="refugee-children-kashmir-education">
+        <div class="refugee-children-kashmir-education">
 
-<h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
+            <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
 
-    <?php $form = ActiveForm::begin(); ?>
-    <div class="row">
-        <div class="col-md-4">
-            <?= $form->field($model, 'refugee_id') ?>
-            <?= $form->field($model, 'full_name') ?>
-        </div>
-        <div class="col-md-4">
-            <?= $form->field($model, 'current_information') ?>
-            <?= $form->field($model, 'job') ?>
-            
-        </div>
-        <div class="col-md-4">
-        <?= $form->field($model, 'college') ?>
-        <?= $form->field($model, 'year') ?>
-        </div>
-    </div>
-        <div class="form-group">
+            <?php $form = ActiveForm::begin(); ?>
+            <div class="row">
+                <div class="col-md-4">
+                    <?= $form->field($model, 'refugee_id') ?>
+                    <?= $form->field($model, 'full_name') ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'current_information') ?>
+                    <?= $form->field($model, 'job') ?>
+
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'college') ?>
+                    <?= $form->field($model, 'year') ?>
+                </div>
+            </div>
+            <div class="form-group">
                 <?= Html::submitButton('Save and Continue', [
                     'class' => 'btn btn-success',
                     'name' => 'save',
@@ -46,8 +46,11 @@ use yii\widgets\ActiveForm;
                     'name' => 'next',
                     'value' => 'next',
                 ]) ?>
+                <a href="<?= \yii\helpers\Url::to(['create-children-kashmir-education', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>"
+                    class="btn btn-warning">Skip</a>
+
             </div>
-    <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
 
 
         </div>

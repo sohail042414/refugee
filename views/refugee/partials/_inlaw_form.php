@@ -25,12 +25,12 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-4">
         <?= $form->field($model, 'refugee_number') ?>
-        <?= $form->field($model, 'relation') ?>
+        <?= $form->field($model, 'relation')?>
         <?= $form->field($model, 'current_address') ?>
         </div>
         <div class="col-md-4">
         <?= $form->field($model, 'name') ?>
-        <?= $form->field($model, 'living_status') ?>
+        <?= $form->field($model, 'living_status')->dropDownList(app\helpers\AppHelper::getLivingStatusList())  ?>
         <?= $form->field($model, 'occupation') ?>
         </div>
         <div class="col-md-4">
@@ -54,6 +54,7 @@ use yii\widgets\ActiveForm;
                     'name' => 'next',
                     'value' => 'next',
                 ]) ?>
+                <a href="<?= \yii\helpers\Url::to(['create-in-law', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>" class="btn btn-warning">Skip</a>
             </div>
     <?php ActiveForm::end(); ?>
 

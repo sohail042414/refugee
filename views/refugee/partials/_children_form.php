@@ -52,6 +52,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                             'name' => 'next',
                             'value'=> 'next',
                         ]) ?>
+                         <a href="<?= \yii\helpers\Url::to(['create-children', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>" class="btn btn-warning">Skip</a>
+
                     </div>
             <?php ActiveForm::end(); ?>
         </div>

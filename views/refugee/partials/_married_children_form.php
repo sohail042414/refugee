@@ -56,6 +56,8 @@ use yii\widgets\ActiveForm;
                     'name' => 'next',
                     'value' => 'next',
                 ]) ?>
+                <a href="<?= \yii\helpers\Url::to(['create-married-children', 'refugee_id' => $refugee->id]) ?>" class="btn btn-warning">Skip</a>
+
             </div>
             <?php ActiveForm::end(); ?>
 

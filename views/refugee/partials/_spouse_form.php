@@ -47,6 +47,9 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton('Save and Continue', ['name'=> 'save','class' => 'btn btn-success']) ?> 
         <?= Html::submitButton('Save and Next', ['name'=> 'next','class' => 'btn btn-primary']) ?>
+        <!-- <?= Html::button('Skip', ['name' => 'skip', 'class' => 'btn btn-warning',]) ?> -->
+        <a href="<?= \yii\helpers\Url::to(['create-spouse', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>" class="btn btn-warning">Skip</a>
+
     </div>
 
     <?php ActiveForm::end(); ?>
