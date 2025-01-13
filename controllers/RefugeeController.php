@@ -443,6 +443,11 @@ class RefugeeController extends Controller
         $model = new RentalHouse();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-property';
+            $refugee->update(false);
+            return $this->redirect(['create-property', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Rental house information saved successfully.');
@@ -468,6 +473,11 @@ class RefugeeController extends Controller
         $model = new Property();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-bank-account';
+            $refugee->update(false);
+            return $this->redirect(['create-bank-account', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Property information saved successfully.');
@@ -496,6 +506,11 @@ class RefugeeController extends Controller
         $model = new BankAccount();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-foreign-travel';
+            $refugee->update(false);
+            return $this->redirect(['create-foreign-travel', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Bank Account information saved successfully.');
@@ -522,6 +537,11 @@ class RefugeeController extends Controller
         $model = new ForeignTravel();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-iijok-guest';
+            $refugee->update(false);
+            return $this->redirect(['create-iijok-guest', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Foreign Travel information saved successfully.');
@@ -550,6 +570,11 @@ class RefugeeController extends Controller
         $model = new IijokGuest();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = 'create-police-case';
+            $refugee->update(false);
+            return $this->redirect(['create-police-case', 'refugee_id' => $refugee->id]);
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'IIJOK Guest information saved successfully.');
@@ -574,6 +599,12 @@ class RefugeeController extends Controller
         $model = new PoliceCase();
         $model->refugee_id = $refugee_id;
         $post = Yii::$app->request->post();
+        if (Yii::$app->request->get('skip')) {
+            $refugee->status = '/';
+            $refugee->update(false);
+            // return $this->redirect(['create-police-case', 'refugee_id' => $refugee->id]);
+            return $this->refresh();
+        }
         if ($model->load($post)) {
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Police Case information saved successfully.');

@@ -46,6 +46,8 @@ use yii\widgets\ActiveForm;
                     'name' => 'next',
                     'value' => 'next',
                 ]) ?>
+<a href="<?= \yii\helpers\Url::to(['create-police-case', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>"
+class="btn btn-warning">Skip</a>
             </div>
             <?php ActiveForm::end(); ?>
 

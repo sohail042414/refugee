@@ -24,18 +24,18 @@ use yii\widgets\ActiveForm;
 
             <div class="row">
                 <div class="col-md-4">
-                <?= $form->field($model, 'refugee_id') ?>
-                <?= $form->field($model, 'monthly_income') ?>
-                <?= $form->field($model, 'requested_financial_assistance') ?>
+                    <?= $form->field($model, 'refugee_id') ?>
+                    <?= $form->field($model, 'monthly_income') ?>
+                    <?= $form->field($model, 'requested_financial_assistance') ?>
                 </div>
                 <div class="col-md-4">
-                <?= $form->field($model, 'refugee_number') ?>
-                <?= $form->field($model, 'subsistence_allowance') ?>
-                
+                    <?= $form->field($model, 'refugee_number') ?>
+                    <?= $form->field($model, 'subsistence_allowance') ?>
+
                 </div>
                 <div class="col-md-4">
-                <?= $form->field($model, 'da') ?>
-                <?= $form->field($model, 'total_monthly_income') ?>
+                    <?= $form->field($model, 'da') ?>
+                    <?= $form->field($model, 'total_monthly_income') ?>
                 </div>
 
             </div>
@@ -50,8 +50,9 @@ use yii\widgets\ActiveForm;
                     'name' => 'next',
                     'value' => 'next',
                 ]) ?>
-                                <a href="<?= \yii\helpers\Url::to(['create-economy', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>" class="btn btn-warning">Skip</a>
-            
+                <a href="<?= \yii\helpers\Url::to(['create-economy', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>"
+                    class="btn btn-warning">Skip</a>
+
             </div>
             <?php ActiveForm::end(); ?>
 
