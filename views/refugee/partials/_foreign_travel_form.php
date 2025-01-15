@@ -24,10 +24,10 @@ use yii\widgets\ActiveForm;
 
             <div class="row">
                 <div class="col-md-4">
-                <?= $form->field($model, 'refugee_id') ?>
                 <?= $form->field($model, 'refugee_number') ?>
                 <?= $form->field($model, 'details') ?>
                 <?= $form->field($model, 'personal_private') ?>
+                <?= $form->field($model, 'occupation_abroad') ?>
                 </div>
                 <div class="col-md-4">
                 <?= $form->field($model, 'passport_number') ?>
@@ -41,9 +41,6 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($model, 'wife') ?>
                 <?= $form->field($model, 'date_of_departure')->textInput(['type' => 'date'])?>
                 </div>
-                <div class="col-md-4">
-                <?= $form->field($model, 'occupation_abroad') ?>
-                </div>  
             </div>
 
             <div class="form-group">

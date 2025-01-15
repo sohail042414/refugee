@@ -23,13 +23,13 @@ use yii\widgets\ActiveForm;
 
             <div class="col-md-4">
         <?= $form->field($model, 'refugee_number') ?>
-        <?= $form->field($model, 'refugee_id') ?>
         <?= $form->field($model, 'details') ?>
+        <?= $form->field($model, 'date_of_arrest')->textInput(['type' => 'date']) ?>
         </div>
         <div class="col-md-4">
         <?= $form->field($model, 'FIR') ?>
         <?= $form->field($model, 'crime') ?>
-        <?= $form->field($model, 'date_of_arrest')->textInput(['type' => 'date']) ?>
+        
         </div>
         <div class="col-md-4">
         <?= $form->field($model, 'bail') ?>

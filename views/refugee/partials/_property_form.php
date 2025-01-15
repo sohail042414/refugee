@@ -21,10 +21,10 @@ use yii\widgets\ActiveForm;
             <?php $form = ActiveForm::begin(); ?>
             <div class="row">
                 <div class="col-md-4">
-                <?= $form->field($model, 'refugee_id') ?>
                     <?= $form->field($model, 'refugee_number') ?>
                     <?= $form->field($model, 'detail') ?>
                     <?= $form->field($model, 'car') ?>
+                    <?= $form->field($model, 'miscellaneous') ?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'personal_private') ?>
@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'house') ?>
                     <?= $form->field($model, 'plot') ?>
                     <?= $form->field($model, 'jewellery') ?>
-                    <?= $form->field($model, 'miscellaneous') ?>
+                    
                 </div>
             </div>
             <div class="form-group">

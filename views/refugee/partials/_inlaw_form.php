@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-4">
         <?= $form->field($model, 'refugee_number') ?>
-        <?= $form->field($model, 'relation')?>
+        <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getInLawRelationsList())?>
         <?= $form->field($model, 'current_address') ?>
         </div>
         <div class="col-md-4">

@@ -22,9 +22,9 @@ use app\models;
             <?php $form = ActiveForm::begin(); ?>
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_id') ?>
                     <?= $form->field($model, 'details') ?>
                     <?= $form->field($model, 'head_of_family') ?>
+                    <?= $form->field($model, 'self') ?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'student_name') ?>
@@ -34,7 +34,7 @@ use app\models;
                 <div class="col-md-4">
                     <?= $form->field($model, 'institution') ?>
                     <?= $form->field($model, 'year') ?>
-                    <?= $form->field($model, 'self') ?>
+                    
                 </div>
                 <div class="form-group">
                     <?= Html::submitButton('Save and Continue', [

@@ -24,12 +24,12 @@ use yii\widgets\ActiveForm;
 
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_id') ?>
+                <?= $form->field($model, 'refugee_number') ?>
                     <?= $form->field($model, 'monthly_income') ?>
-                    <?= $form->field($model, 'requested_financial_assistance') ?>
+                    
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_number') ?>
+                <?= $form->field($model, 'requested_financial_assistance') ?>
                     <?= $form->field($model, 'subsistence_allowance') ?>
 
                 </div>

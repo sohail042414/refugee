@@ -23,8 +23,8 @@ use yii\widgets\ActiveForm;
             <?php $form = ActiveForm::begin(); ?>
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_id') ?>
                     <?= $form->field($model, 'full_name') ?>
+                    <?= $form->field($model, 'year') ?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'current_information') ?>
@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'college') ?>
-                    <?= $form->field($model, 'year') ?>
+
                 </div>
             </div>
             <div class="form-group">

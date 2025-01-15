@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
 
                 <div class="col-md-4">
                     <?= $form->field($model, 'refugee_number') ?>
-                    <?= $form->field($model, 'refugee_id') ?>
+                    <?= $form->field($model, 'children') ?>
                     <?= $form->field($model, 'details') ?>
                 </div>
                 <div class="col-md-4">
@@ -41,7 +41,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                 <div class="col-md-4">
                     <?= $form->field($model, 'account_name') ?>
                     <?= $form->field($model, 'wife') ?>
-                    <?= $form->field($model, 'children') ?>
                 </div>
             </div>
 

@@ -40,10 +40,59 @@ class AppHelper
         ];
     }
 
+    
+    public static function getJobRelationsList(){
+        return [
+            'wife' => 'Wife',
+            'children' => 'Children'
+        ];
+    }
+
+    
+    public static function getInLawRelationsList(){
+        return [
+            'father-in-law' => 'Father-In-Law',
+            'mother-In-Law' => 'Mother-In-Law',
+        ];
+    }
+
+    public static function getBusinessRelationsList(){
+        return [
+            'self' => 'Self',
+            'son' => 'Son',
+            'daughter' => 'Daughter',
+            'wife' => 'Wife',
+            'daughter_in_law' => 'Daughter-In-Law',
+            'other' => 'Other'
+        ];
+    }
+    public static function getIijokGuestRelationsList(){
+        return [
+            'guest' => 'Guest',
+            'relative' => 'Relative',
+            'visit' => 'Visit'
+        ];
+    }
+
     public static function getLivingStatusList(){
         return [
             'alive' => 'Alive',
             'dead' => 'Dead',
+        ];
+    }
+
+    public static function getJobTypeList(){
+        return [
+            'govt' => 'Government',
+            'public' => 'Public',
+            'private' => 'Private',
+        ];
+    }
+
+    public static function getIijokGuestTypeList(){
+        return [
+            'To IIJOK' => 'To IIJOK',
+            'From IIJOK' => 'From IIJOK'
         ];
     }
 

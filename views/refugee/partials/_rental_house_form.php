@@ -21,16 +21,16 @@ use yii\widgets\ActiveForm;
             <?php $form = ActiveForm::begin(); ?>
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_id') ?>
+                <?= $form->field($model, 'house_owner_name') ?>
                     <?= $form->field($model, 'refugee_number') ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($model, 'house_owner_name') ?>
+                <?= $form->field($model, 'phone_number') ?>
                     <?= $form->field($model, 'address') ?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'monthly_rent') ?>
-                    <?= $form->field($model, 'phone_number') ?>
+                    
                 </div>
             </div>
             <div class="form-group">

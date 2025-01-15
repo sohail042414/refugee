@@ -24,20 +24,20 @@ use yii\widgets\ActiveForm;
 
             <div class="row">
 <div class="col-md-4">
-        <?= $form->field($model, 'refugee_id') ?>
+        <?= $form->field($model, 'full_name') ?>
         <?= $form->field($model, 'refugee_number') ?>
         
         <?= $form->field($model, 'date_of_return')->textInput(['type' => 'date']) ?>
         <?= $form->field($model, 'details') ?>
         </div>
         <div class="col-md-4">
-        <?= $form->field($model, 'full_name') ?>
+        <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getIijokGuestRelationsList())  ?>
         <?= $form->field($model, 'purpose_of_arrival') ?>
         <?= $form->field($model, 'date_of_arrival')->textInput(['type' => 'date']) ?>
-        <?= $form->field($model, 'relation') ?>
+
         </div>
         <div class="col-md-4">
-        <?= $form->field($model, 'type') ?>
+        <?= $form->field($model, 'type')->dropDownList(app\helpers\AppHelper::getIijokGuestTypeList()) ?>
         <?= $form->field($model, 'purpose_of_departure') ?>
         <?= $form->field($model, 'date_of_departure')->textInput(['type' => 'date']) ?>
         </div>

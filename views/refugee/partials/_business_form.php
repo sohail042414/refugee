@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
 
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'refugee_id') ?>
                     <?= $form->field($model, 'business_details') ?>
-                    <?= $form->field($model, 'relation') ?>
+                    <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getBusinessRelationsList()) ?>
+                    <?= $form->field($model, 'shop') ?>
                 </div>
 
                 <div class="col-md-4">
@@ -41,7 +41,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                 
                 <div class="col-md-4">
                     <?= $form->field($model, 'labor') ?>
-                    <?= $form->field($model, 'shop') ?>
                     <?= $form->field($model, 'other_details') ?>
                 </div>
             </div>
