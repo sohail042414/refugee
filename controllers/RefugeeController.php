@@ -14,6 +14,7 @@ use app\models\Property;
 use app\models\RentalHouse;
 use app\models\Scholarship;
 use Yii;
+use Mpdf\Mpdf;
 use yii\filters\AccessControl;
 use app\models\Refugee;
 use app\models\Spouse;
@@ -39,7 +40,7 @@ class RefugeeController extends Controller
                         'create-married-children', 'create-family-member', 'create-in-law', 'create-scholarship',
                         'create-children-kashmir-education','create-job', 'create-business', 'create-rental-house',
                         'create-property', 'create-economy', 'create-bank-account', 'create-foreign-travel',
-                        'create-iijok-guest', 'create-police-case', 
+                        'create-iijok-guest', 'create-police-case', 'pdf' 
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -75,6 +76,17 @@ class RefugeeController extends Controller
         return $this->render('view', [
             'model' => $model,
         ]);
+    }
+
+    public function actionPdf($id)
+    {
+        $model = $this->findModel($id);
+        $content = $this->renderPartial('view', ['model' => $model]);
+        $mpdf = new Mpdf();
+        $css = file_get_contents(Yii::getAlias('@webroot/css/pdf.css'));
+        $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
+        $mpdf->WriteHTML($content);
+        return $mpdf->Output("Refugee_Details_{$model->id}.pdf", 'D');
     }
 
 
