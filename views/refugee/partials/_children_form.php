@@ -14,47 +14,51 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
 ?>
 
 <div class="card">
-                <div class="card-header">
-                    <h2>Add Children Data</h2>
+    <div class="card-header">
+        <h2>Add Children Data</h2>
+    </div>
+    <div class="card-body">
+
+        <div class="children-form">
+
+            <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
+
+            <!-- Children form -->
+            <?php $form = ActiveForm::begin(); ?>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'date_of_birth')->textInput(['type' => 'date']) ?>
+                    <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="card-body">
+                <div class="col-md-4">
+                    <?= $form->field($model, 'institute')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'passing_year')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'occupation')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'disability')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
 
-                    <div class="children-form">
+            <div class="form-group">
+                <?= Html::submitButton('Save and Continue', [
+                    'class' => 'btn btn-success',
+                    'name' => 'save',
+                ]) ?>
+                <?= Html::submitButton('Save and Next', [
+                    'class' => 'btn btn-primary',
+                    'name' => 'next',
+                    'value' => 'next',
+                ]) ?>
+                
+                <a href="<?= \yii\helpers\Url::to(['create-children', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>"
+                    class="btn btn-warning">Skip</a>
 
-                        <h2 class="mt-4 mb-3"><?//= Html::encode($title) ?></h2>
+                    <?= Html::a('Back', ['create-spouse', 'refugee_id' => $model->refugee_id, 'back' => true], ['class' => 'btn btn-secondary']) ?>
 
-                        <!-- Children form -->
-                        <?php $form = ActiveForm::begin(); ?>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'date_of_birth')->textInput(['type' => 'date']) ?>
-                                <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'institute')->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'passing_year')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'occupation')->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'disability')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Save and Continue', [
-                            'class' => 'btn btn-success', 
-                            'name' => 'save',
-                        ]) ?>
-                        <?= Html::submitButton('Save and Next', [
-                            'class' => 'btn btn-primary', 
-                            'name' => 'next',
-                            'value'=> 'next',
-                        ]) ?>
-                         <a href="<?= \yii\helpers\Url::to(['create-children', 'refugee_id' => $refugee->id, 'skip' => 1]) ?>" class="btn btn-warning">Skip</a>
-
-                    </div>
+            </div>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

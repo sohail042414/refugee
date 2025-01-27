@@ -34,17 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'district_id',
                 'header' => 'District',
                 'value' => function ($model) {
-                    return $model->district->name;
-                 }
+                        return $model->district->name;
+                    }
             ],
             'address',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Camp $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 },
-                 'header' => 'Actions', // Optional: Header text for the column
-                 'contentOptions' => ['style' => 'width: 120px; white-space: nowrap;'],
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    },
+                'header' => 'Actions', // Optional: Header text for the column
+                'contentOptions' => ['style' => 'width: 120px; white-space: nowrap;'],
             ],
         ],
     ]); ?>

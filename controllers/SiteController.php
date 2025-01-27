@@ -2,14 +2,17 @@
 
 namespace app\controllers;
 
+use app\models\ForeignTravel;
+use app\models\IijokGuest;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
-
+use app\models\Camp;
+use app\models\Refugee;
+use app\models\User;
 class SiteController extends Controller
 {
     /**
@@ -63,8 +66,30 @@ class SiteController extends Controller
      */
     
     public function actionIndex()
-    { 
-        return $this->render('index'); 
+    {
+        $totalCamps = Camp::find()->count();
+        $totalRefugees = Refugee::find()->count();
+        $totalUsers = User::find()->count();
+    
+        $foreignTours = ForeignTravel::find()->count();
+        $visitsToIOJK = IijokGuest::find()->count();
+        $guestsFromIOJK = IijokGuest::find()->count();
+    
+        $addedLastWeek = Refugee::find()->where(['>=', 'created_at', date('Y-m-d H:i:s', strtotime('-1 week'))])->count();
+        $addedLastMonth = Refugee::find()->where(['>=', 'created_at', date('Y-m-d H:i:s', strtotime('-1 month'))])->count();
+        $addedLastYear = Refugee::find()->where(['>=', 'created_at', date('Y-m-d H:i:s', strtotime('-1 year'))])->count();
+    
+        return $this->render('index', [
+            'totalCamps' => $totalCamps,
+            'totalRefugees' => $totalRefugees,
+            'totalUsers' => $totalUsers,
+            'foreignTours' => $foreignTours,
+            'visitsToIOJK' => $visitsToIOJK,
+            'guestsFromIOJK' => $guestsFromIOJK,
+            'addedLastWeek' => $addedLastWeek,
+            'addedLastMonth' => $addedLastMonth,
+            'addedLastYear' => $addedLastYear,
+        ]);
     }
 
     public function actionForm_home()

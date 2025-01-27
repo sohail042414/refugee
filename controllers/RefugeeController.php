@@ -166,6 +166,11 @@ class RefugeeController extends Controller
             return $this->redirect(['create-married-children', 'refugee_id' => $refugee->id]);
         }
 
+        if (Yii::$app->request->get('back')) {
+            $refugee->status = 'create-spouse';
+            $refugee->update(false);
+            return $this->redirect(['create-spouse', 'refugee_id' => $refugee->id]);
+        }
 
         if ($model->load($post)) {
             if ($model->save()) {
