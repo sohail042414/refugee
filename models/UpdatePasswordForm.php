@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace app\models;
@@ -29,9 +29,21 @@ class UpdatePasswordForm extends Model
     public function validateCurrentPassword($attribute, $params)
     {
         $user = \Yii::$app->user->identity;
-        
-        // Check if the entered current password is correct
-        if (!\Yii::$app->security->validatePassword($this->current_password, $user->password)) {
+
+
+
+        if (!$user) {
+            $this->addError($attribute, 'User is not authenticated');
+            return;
+
+        }
+
+        if (!$this->current_password) {
+            $this->addError($attribute, 'password is missing.');
+            return;
+        }
+
+        if (!\Yii::$app->security->validatePassword($this->current_password, $user->password_hash)) {
             $this->addError($attribute, 'Current password is incorrect.');
         }
     }

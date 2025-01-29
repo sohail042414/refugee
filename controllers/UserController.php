@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 use yii\web\IdentityInterface;
 use yii;
 use yii\web\Controller;
-
+use app\models\UpdatePasswordForm;
 
 class UserController extends Controller
 {
@@ -13,7 +13,7 @@ class UserController extends Controller
      *
      * @return string
      */
-    
+
     public function actionProfile()
     {
         // Get the currently logged-in user from the session
@@ -33,20 +33,14 @@ class UserController extends Controller
     public function actionUpdatePassword()
     {
         $model = new UpdatePasswordForm();
-
-        // If the form is submitted and valid, update the password
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = Yii::$app->user->identity;
-
-            // Update password (ensure you hash the password before saving)
-            $user->password = md5($model->new_password);  // Use a proper password hashing function here
+            $user->password_hash = Yii::$app->security->generatePasswordHash($model->new_password);  // Use a proper password hashing function here
             $user->save();
-
             Yii::$app->session->setFlash('success', 'Password updated successfully!');
             return $this->redirect(['user/profile']);
         }
 
-        // Render the update password view
         return $this->render('update-password', [
             'model' => $model,
         ]);
