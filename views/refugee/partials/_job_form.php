@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 <div class="row">
     <div class="col-md-4">
         <?= $form->field($model, 'job_type')->dropDownList(app\helpers\AppHelper::getJobTypeList()) ?>
-        <?= $form->field($model, 'salary') ?>
+        <?= $form->field($model, 'salary')->textInput(['type' => 'number']) ?>
         <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getJobRelationsList()) ?>
     </div>
 
@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
 
     <div class="col-md-4">
         <?= $form->field($model, 'designation') ?>
-        <?= $form->field($model, 'grade') ?>
+        <?= $form->field($model, 'grade')->textInput(['type' => 'number']) ?>
 
     </div>
 </div>

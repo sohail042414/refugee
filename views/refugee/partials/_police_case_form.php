@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
         
         </div>
         <div class="col-md-4">
-        <?= $form->field($model, 'bail') ?>
+        <?= $form->field($model, 'bail')->textInput(['type' => 'number']) ?>
         <?= $form->field($model, 'date_of_release')->textInput(['type' => 'date']) ?>
         </div>
         </div>

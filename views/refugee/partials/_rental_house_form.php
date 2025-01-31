@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'address') ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($model, 'monthly_rent') ?>
+                    <?= $form->field($model, 'monthly_rent')->textInput(['type' => 'number']) ?>
                     
                 </div>
             </div>

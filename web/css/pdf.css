@@ -6,9 +6,10 @@ body {
     margin: 20px;
 }
 
-h1, h4 {
+h1,
+h4 {
     color: #444;
-    border-bottom: 1px solid #ddd;
+    border-bottom: none !important;
     padding-bottom: 5px;
 }
 
@@ -28,17 +29,26 @@ table {
     margin-top: 10px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid #ccc;
 }
 
-th, td {
+th,
+td {
     padding: 8px;
     text-align: left;
+    color: #000 !important;
 }
 
 th {
     background-color: #f9f9f9;
+}
+
+a {
+    color: #000 !important;
+    text-decoration: none !important;
 }
 
 .row {
@@ -46,5 +56,6 @@ th {
 }
 
 .btn {
-    display: none; /* Hide buttons in PDF */
+    display: none;
+    /* Hide buttons in PDF */
 }

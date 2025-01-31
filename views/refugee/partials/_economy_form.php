@@ -29,12 +29,12 @@ use yii\widgets\ActiveForm;
                     
                 </div>
                 <div class="col-md-4">
-                <?= $form->field($model, 'requested_financial_assistance') ?>
-                    <?= $form->field($model, 'subsistence_allowance') ?>
+                <?= $form->field($model, 'requested_financial_assistance')->textInput(['type' => 'number']) ?>
+                    <?= $form->field($model, 'subsistence_allowance') ->textInput(['type' => 'number'])?>
 
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($model, 'da') ?>
+                    <?= $form->field($model, 'da') ->textInput(['type' => 'number'])?>
                     <?= $form->field($model, 'total_monthly_income') ?>
                 </div>
 

@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </p>
 <?php endif; ?>
 
-
+<h2 class="mb-4">Section 1: Basic Information </h2>
     <h4>Head of Family Information</h4>
     <?php
 
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
 
     ?>
-
+<h2 class="mb-4 mt-4">Section 2: Spouse Information </h2>
     <h4>Spouse Information</h4>
     <?php
     echo $this->render('partials/_spouse_details', [
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">Section 3(a): Children Information </h2>
     <h4>Children Information</h4>
     <?php
     echo $this->render('partials/_children_details', [
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">Section 3(b): Married Children Information </h2>
 <h4>Married Children Information</h4>
     <?php
     echo $this->render('partials/_married_children_details', [
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
         ?>
 
-
+<h2 class="mb-4 mt-4">Section 4: Family Members Information </h2>
 <h4>Family Members Information</h4>
     <?php
     echo $this->render('partials/_family_member_details', [
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4"> Section 5: Inlaw Information </h2>
 <h4>In-Law Information</h4>
     <?php
     echo $this->render('partials/_inlaw_details', [
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">  Section 6: Scholarship Information</h2>
 <h4>Scholarship Information</h4>
     <?php
     echo $this->render('partials/_scholarship_details', [
@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">  Section 7: Children kashmir education Information</h2>
 <h4>Children Kashmir Education Information</h4>
     <?php
     echo $this->render('partials/_children_kashmir_education_details', [
@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">  Section 8: Job Information</h2>
 <h4>Job Information</h4>
     <?php
     echo $this->render('partials/_job_details', [
@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4"> Section 9: Business Information</h2>
 <h4>Business Information</h4>
     <?php
     echo $this->render('partials/_business_details', [
@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">  Section 10: Economy Information</h2>
 <h4>Economy Information</h4>
     <?php
     echo $this->render('partials/_economy_details', [
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">   Section 11: Rental House Information</h2>
 <h4>Rental House Information</h4>
     <?php
     echo $this->render('partials/_rental_house_details', [
@@ -130,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'show_actions' => false,
     ])
         ?>
-
+<h2 class="mb-4 mt-4">   Section 12: Property Information</h2>
 <h4>Property Information</h4>
     <?php
     echo $this->render('partials/_property_details', [
@@ -139,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
         ?>
 
-
+<h2 class="mb-4 mt-4"> Section 13: Bank Account Information</h2>
 <h4>Bank Account Information</h4>
     <?php
     echo $this->render('partials/_bank_account_details', [
@@ -148,7 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
         ?>
 
-
+<h2 class="mb-4 mt-4"> Section 14: Foreign Travel Information</h2>
 <h4>Foreign Travel Information</h4>
     <?php
     echo $this->render('partials/_foreign_travel_details', [
@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 
 
-
+<h2 class="mb-4 mt-4"> Section 15:IIJOK Guest Information</h2>
 <h4>IIJOK Guests Information</h4>
     <?php
     echo $this->render('partials/_iijok_guest_details', [
@@ -167,7 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
         ?>
 
-
+<h2 class="mb-4 mt-4"> Section 16:Police Case Information</h2>
 <h4>Police Case Information</h4>
     <?php
     echo $this->render('partials/_police_case_details', [

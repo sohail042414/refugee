@@ -30,17 +30,17 @@ $this->params['breadcrumbs'][] = ['label' => 'Children', 'url' => ['index']];
                 <div class="col-md-4">
                     <?= $form->field($model, 'business_details') ?>
                     <?= $form->field($model, 'relation')->dropDownList(app\helpers\AppHelper::getBusinessRelationsList()) ?>
-                    <?= $form->field($model, 'shop') ?>
+                    <?= $form->field($model, 'shop') ->textInput(['type' => 'number'])?>
                 </div>
 
                 <div class="col-md-4">
                     <?= $form->field($model, 'from_date')->textInput(['type' => 'date']) ?>
                     <?= $form->field($model, 'monthly_income') ?>
-                    <?= $form->field($model, 'clinic') ?>
+                    <?= $form->field($model, 'clinic')->textInput(['type' => 'number']) ?>
                 </div>
                 
                 <div class="col-md-4">
-                    <?= $form->field($model, 'labor') ?>
+                    <?= $form->field($model, 'labor') ->textInput(['type' => 'number'])?>
                     <?= $form->field($model, 'other_details') ?>
                 </div>
             </div>

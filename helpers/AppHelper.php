@@ -43,8 +43,12 @@ class AppHelper
     
     public static function getJobRelationsList(){
         return [
+            'self' => 'Self',
+            'son' => 'Son',
+            'daughter' => 'Daughter',
             'wife' => 'Wife',
-            'children' => 'Children'
+            'daughter_in_law' => 'Daughter-In-Law',
+            'other' => 'Other'
         ];
     }
 
